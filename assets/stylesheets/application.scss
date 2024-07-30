@@ -1,0 +1,229 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ @import "bootstrap";
+//デフォ
+ *, *:before, *:after {
+  box-sizing: border-box;
+  }
+
+ // Devise用
+ 
+ .container-login {
+   @extend .container-fluid;
+   max-width: 576px;
+   padding: 2rem;
+ }
+ 
+ .alert-notice {
+   @extend .alert-info;
+ }
+ 
+ .alert-alert {
+   @extend .alert-danger;
+ }
+
+
+ .container-login {
+  @extend .container-fluid;
+  max-width: 576px;
+  padding: 2rem;
+}
+
+.alert-notice {
+  @extend .alert-info;
+}
+
+.alert-alert {
+  @extend .alert-danger;
+}
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+body{
+  background-color: #f8f7f6;
+  display: flex;
+  flex-direction: column;	
+  height: auto!important;
+  width: 100%;
+  flex: 1;
+  overflow: scroll!important; /* ここのscrollが効かない */
+  height: auto!important; /* これを追加 */
+}
+a {
+  text-decoration: none!important;
+  text-decoration: none;
+}
+a :hover{
+  text-decoration: none!important;
+}
+
+//タイトルとか
+.Page-Area{
+	margin: auto;
+	margin-top: 1vw;
+	width: 85%;
+	margin-bottom: 10px;
+ }
+ .Page-Area .Page-Title{
+
+	 font-size: 30px;
+ }
+ .Page-Area .Page-Text{
+	font-size: 15px;
+  margin-bottom: 10px;
+ }
+.Page-DashBord{
+  border: solid 2px #FF574D;
+  border-radius: 3px;
+  background-color: #FFF;
+  padding: 1vw;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+.DashBoard{
+  border: solid 1px #A2A2A2;
+  width: 100%;
+  height: auto;
+  display: block;
+  box-sizing: border-box;
+  margin: auto;
+  padding: 20px;
+  margin-top: 50px;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+//ダッシュボードのリンクレイアウト
+.DashBoard-Page-Bt-Area{
+  height: auto;
+  margin: auto;
+  box-sizing: border-box;
+display: flex;
+flex-wrap: wrap;
+justify-content:space-between;
+}
+.DashBoard-Page-Bt-Area::after{
+content: "";
+display: block;
+padding: 10px;
+font-size: 2em;
+width: 500px;
+margin: 10px;
+border-radius: 5px;
+}
+.DashBoard-Page-Bt-Area .DashBoard-Page-Bt{
+  height: auto;
+color: #ffffff;
+background-color: #FF574D;
+  text-align:left;
+  box-sizing: border-box;
+padding: 10px;
+width: 500px;
+margin: 10px;
+border-radius: 5px;
+display: flex;
+}
+.DashBoard-Page-Bt-Area .DashBoard-Page-Bt .DashBoard-Page-Bt-Icon{
+width: 30%;
+margin: auto;
+text-align: center;
+padding-top: 10px;
+box-sizing: border-box;
+}
+.DashBoard-Page-Bt-Area .DashBoard-Page-Bt .DashBoard-Page-Bt-Texts{
+width: 70%;
+margin: auto;
+overflow-wrap: break-word;
+box-sizing: border-box;
+}
+.DashBoard-Page-Bt-Area .DashBoard-Page-Bt .DashBoard-Page-Bt-Texts .DashBoard-Page-Bt-Title{
+font-size: 1.5vw;
+overflow-wrap: break-word;
+box-sizing: border-box;
+}
+.DashBoard-Page-Bt-Area .DashBoard-Page-Bt .DashBoard-Page-Bt-Texts .DashBoard-Page-Bt-Text{
+font-size: 0.8vw;
+overflow-wrap: break-word;
+box-sizing: border-box;
+}
+.Back-Link-Area{
+  display: flex;
+  width: auto;
+}
+.Back-Link-Icon{
+  width: auto;
+}
+.Back-Link-Text{
+  width: auto;
+}
+.none{
+  width: 45%;
+  margin: auto;
+}
+
+@media screen and (max-width: 500px) {
+.DashBoard-Page-Bt-Area .DashBoard-Page-Bt .DashBoard-Page-Bt-Texts .DashBoard-Page-Bt-Title{
+  font-size: 5vw;
+}
+.DashBoard-Page-Bt-Area .DashBoard-Page-Bt .DashBoard-Page-Bt-Texts .DashBoard-Page-Bt-Text{
+  font-size: 2vw;
+  display: none;
+}
+.DashBoard-Page-Bt-Area::after{
+  width: 260px;
+  }
+.DashBoard-Page-Bt-Area .DashBoard-Page-Bt{
+  width: 260px;
+
+}
+
+
+}
+
+/*QR読み取り*/
+.camera-container {
+  width: 100%; 
+  position: relative;
+  background-color: red;
+
+  #canvas {
+    width: 100%; 
+    height: auto;
+    background-color: silver;
+    transform: scale(-1, 1);
+    display: block;
+    margin: 0 auto;
+  }
+
+  #toggle-camera-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px !important;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    clear: both;
+  }
+}

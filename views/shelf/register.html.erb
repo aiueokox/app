@@ -1,0 +1,40 @@
+<div class="Page-Area">
+  <%= link_to(equipment_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        undo
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      備品管理へ戻る
+      </div>
+    </div>
+  <% end %>
+    <div class="Page-Title">
+    親棚新規登録
+    </div>
+    <div class="Page-Text">
+    新たな親棚を登録することが可能です。
+    </div>
+    <div class="DashBoard">
+        <%= form_with(model: @shelf, url: {controller: 'shelf', action: 'create'}) do |f| %>
+            <%= f.hidden_field :user_id,:value =>current_user.id, class: 'form-control' %>
+            <div class="form-group">
+            <div class="form-title">
+                部屋番号
+            </div>
+            <%= f.text_field :room, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+            <div class="form-title">
+                備考(ケースなどへ入れている場合はその旨記載)
+            </div>
+            <%= f.text_field :remark, class: 'form-control' %>
+            </div>
+            <div class="form-group">  
+            <%= f.submit('登録', {class: 'btn-action'}) %>
+            </div>
+        <% end %>
+    </div>
+</div>

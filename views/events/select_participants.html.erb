@@ -1,0 +1,62 @@
+<div class="Page-Area">
+  <%= link_to(events_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        undo
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      イベント一覧へ戻る
+      </div>
+    </div>
+  <% end %>
+    <div class="Page-Title">
+    参加者選択
+    </div>
+    <div class="Page-Text">
+    イベントに参加するユーザーを選択してください。
+    </div>
+    <div class="DashBoard">
+        <span id="selectedCount">0</span> 人が選択されています
+    </div>
+    <div class="DashBoard">
+
+        <%= form_with model: @event, url: add_participants_event_path(@event), method: :patch, local: true do |f| %>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="select_all" /></th>
+                        <th>ID</th>
+                        <th>氏名</th>
+                        <th>フリガナ</th>
+                        <th>あだ名</th>
+                        <th>性別</th>
+                        <th>学籍番号</th>
+                        <th>学科(学科記号)</th>
+                        <th>所属部署</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @users.each do |user| %>
+                    <tr>
+                        <td><%= check_box_tag 'event[user_ids][]', user.id, @event.users.include?(user) %></td>
+                        <td><%= format("%06d", user.id) %></td>
+                        <td><%= user.profile.username %></td>
+                        <td><%= user.profile.ruby %></td>
+                        <td><%= user.profile.nickname %></td>
+                        <td><%= user.profile.sex %></td>
+                        <td><%= user.profile.student_num %></td>
+                        <td><%= user.profile.course.name %></td>
+                        <td><%= user.profile.department.department %></td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <div class="form-group">  
+                <%= f.submit('参加者を保存', {class: 'btn-action'}) %>
+            </div>
+        <% end %>
+
+    </div>
+</div>

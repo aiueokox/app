@@ -1,0 +1,39 @@
+<script>
+    window.onload =  print();
+</script>
+<div class="receipt-container">
+    <div class="receipt-header">
+        <div class="receipt-header-left">
+            <%= image_tag 'becalmLogo.jpg', class: 'receipt-logo' %>
+            <h1 class="receipt-title">領収書</h1>
+        </div>
+        <div class="receipt-info">
+            <p>日付: <%= @receipt.billing_date.strftime('%Y年%m月%d日') %></p>
+            <p>No: <%= @receipt.billing_date.strftime('%Y-%m-%d') %>-01-<%= format("%04d", @receipt.id) %></p>
+        </div>
+    </div>
+    <hr class="receipt-divider">
+    <div class="receipt-address">
+        <p><span class="receipt-label">宛名:</span> <span class="receipt-value"><%= @receipt.name %> 様</span></p>
+    </div>
+    <hr class="receipt-divider">
+    <div class="receipt-details">
+        <p class="center"><span class="receipt-label receipt-large">金額:</span> <span class="receipt-value receipt-large">¥ <%= number_with_delimiter((@receipt.subtotal * (1 + (@receipt.tax_rate.to_f / 100))).round, delimiter: ',') %> -</span></p>
+        <p class="center receipt-small"><span class="receipt-label">但:</span> <span class="receipt-value"><%= @receipt.description %></span></p>
+        <p class="receipt-note center">上記正に領収いたしました</p>
+    </div>
+    <hr class="receipt-divider">
+    <div class="receipt-summary">
+        <p><span class="receipt-label">小計:</span> <span class="receipt-value">¥<%= number_with_delimiter(@receipt.subtotal * (1 + (@receipt.tax_rate/100)), delimiter: ',') %> -</span></p>
+        <p><span class="receipt-label">消費税率:</span> <span class="receipt-value"><%= @receipt.tax_rate %> %</span></p>
+        <p><span class="receipt-label">消費税額:</span> <span class="receipt-value">¥<%= number_with_delimiter((@receipt.subtotal * (@receipt.tax_rate.to_f / 100)).round, delimiter: ',') %> -</span></p>
+    </div>
+    <hr class="receipt-divider">
+    <div class="receipt-footer">
+        <p class="receipt-footer-label">会社名:</p>
+        <p class="receipt-footer-value">BeCalm</p>
+        <p class="receipt-footer-label">住所:</p>
+        <p class="receipt-footer-value">〒4100059 静岡県沼津市若葉町 2‑11‑1フルール・ルージュ 1号棟</p>
+        <%= image_tag 'becalmLogo.jpg', class: 'receipt-footer-logo' %>
+    </div>
+</div>

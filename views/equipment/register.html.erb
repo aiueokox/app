@@ -1,0 +1,70 @@
+<div class="Page-Area">
+  <%= link_to(equipment_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        undo
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      備品管理へ戻る
+      </div>
+    </div>
+  <% end %>
+    <div class="Page-Title">
+    備品新規登録
+    </div>
+    <div class="Page-Text">
+    新たな管理備品を登録することが可能です。
+    </div>
+    <div class="DashBoard">
+        <%= form_with(model: @equipment, url: {controller: 'equipment', action: 'create'}) do |f| %>
+            <%= f.hidden_field :user_id,:value =>current_user.id, class: 'form-control' %>
+            <div class="form-group">
+            <div class="form-title">
+                品目名
+            </div>
+            <%= f.text_field :name, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+            <div class="form-title">
+                数量
+            </div>
+            <%= f.text_field :quantity, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+            <div class="form-title">
+                高さ（単位：cm）
+            </div>
+            <%= f.text_field :size_hight, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+            <div class="form-title">
+                幅（単位：cm）
+            </div>
+            <%= f.text_field :size_width, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+            <div class="form-title">
+                奥行き（単位：cm）
+            </div>
+            <%= f.text_field :size_depth, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+            <div class="form-title">
+                備考（容量や色などの特徴を詳しく記載すること）
+            </div>
+            <%= f.text_field :remark, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+            <div class="form-title">
+                カテゴリー
+            </div>
+            <%= f.select :category, options_for_select([['カテゴリーを選択', ''], ['男性', '男性'],['女性', '女性'], ['その他', 'その他']]), {}, {class: 'form-control'} %>
+            </div>
+            <div class="form-group">  
+            <%= f.submit('登録', {class: 'btn-action'}) %>
+            </div>
+        <% end %>
+    </div>
+</div>

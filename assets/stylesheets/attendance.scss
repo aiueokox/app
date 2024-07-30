@@ -1,0 +1,115 @@
+// Place all the styles related to the attendance controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.date{
+    margin: auto;
+    margin-top: 2%;
+    border: solid #FFF;
+    border-radius: 30px;
+    background-color: #FFF;
+    color: #2d2d2d;
+    width: 40%;
+    padding: 5px;
+    text-align: center;
+    font-size: 3vw;
+}
+.time{
+    margin: auto;
+    margin-top: 2%;
+    border: solid #FFF;
+    border-radius: 30px;
+    background-color: #FFF;
+    color: #2d2d2d;
+    width: 65%;
+    padding: 5px;
+    text-align: center;
+    font-size: 6vw;
+}
+.cate{
+    margin: auto;
+    color: #FFFFFF;
+    width: 65%;
+    padding: 5px;
+    font-size: 2vw;
+}
+.cate-text-S{
+    margin: auto;
+    border: solid #00E119;
+    border-radius: 30px;
+    color: #2d2d2d;
+    width: 65%;
+    padding: 5px;
+    text-align: center;
+    font-size: 10vw;
+    background-color: #00E119;
+    margin-bottom: 5%;
+}
+.cate-text-A{
+    margin: auto;
+    border: solid #00E119;
+    border-radius: 30px;
+    color: #00E119;
+    width: 65%;
+    padding: 5px;
+    text-align: center;
+    font-size: 10vw;
+    margin-bottom: 5%;
+}
+.cate-text-E{
+    margin: auto;
+    border: solid #ffd900;
+    border-radius: 30px;
+    color: #2d2d2d;
+    width: 65%;
+    padding: 5px;
+    text-align: center;
+    font-size: 10vw;
+    background-color: #ffd900;
+    margin-bottom: 5%;
+}
+.cate-text-I{
+    margin: auto;
+    border: solid #0077ff;
+    border-radius: 30px;
+    color: #0077ff;
+    width: 65%;
+    padding: 5px;
+    text-align: center;
+    font-size: 10vw;
+    margin-bottom: 5%;
+}
+.cate-text-I-S{
+    margin: auto;
+    border: solid #0077ff;
+    border-radius: 30px;
+    color: #2d2d2d;
+    width: 65%;
+    padding: 5px;
+    text-align: center;
+    font-size: 10vw;
+    background-color: #0077ff;
+    margin-bottom: 5%;
+}
+.cate-text-O{
+    margin: auto;
+    border: solid #C40003;
+    border-radius: 30px;
+    color: #C40003;
+    width: 65%;
+    padding: 5px;
+    text-align: center;
+    font-size: 10vw;
+    margin-bottom: 5%;
+}
+.cate-text-O-S{
+    margin: auto;
+    border: solid #C40003;
+    border-radius: 30px;
+    color: #2d2d2d;
+    width: 65%;
+    padding: 5px;
+    text-align: center;
+    font-size: 10vw;
+    background-color: #C40003;
+    margin-bottom: 5%;
+}

@@ -1,0 +1,65 @@
+<div class="Page-Area">
+  <%= link_to(root_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        door_back
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      ホームへ戻る
+      </div>
+    </div>
+  <% end %>
+    <div class="Page-Title">
+    現在活動している会員のリスト
+    </div>
+    <div class="Page-Text">
+    現在活動している会員を一覧で確認することが可能です。
+    </div>
+    <div class="DashBoard">
+      <table class="table">
+        <tr>
+            <%# <td></td> %>
+            <td>ID</td>
+            <td>氏名</td>
+            <td>あだ名</td>
+            <td>性別</td>
+            <td>学科</td>
+            <td>所属部署</td>
+            <td>活動開始時刻</td>
+            <td></td>
+        </tr>
+        <% @Activities.each do | activ | %>
+        <% @profiles.each do | user | %>
+        <% if activ.user_id == user.user_id %>
+          <tr>
+            <div class="list-item">
+            <%# 表示速度が著しく低下するためコメントアウト %>
+            <%# <td style="width:5%"> %>
+            
+            <%# <div class="list-UserPicFrame">%>
+              <%# if current_user.role_id.slice(2) >= "4" || current_user.id == user.user_id%>
+                <%#= image_tag user.image_url, class: 'list-UserPic' %>
+              <%# else %>
+                <%#= image_tag "UserPic.png", class: 'list-UserPic' %>
+              <%# end %>
+            <%# </div> %>
+            
+            <%# </td> %>
+            <td><%= link_to(format("%06d", user.user_id.presence || '---'), "/profile/info/#{user.user_id}",class:"list-link") %></td>
+            <td><%= user.username.presence || '---' %></td>
+            <td><%= user.nickname.presence || '---' %></td>
+            <td><%= user.sex.presence || '---' %></td>
+            <td><%= course_name(user.course_id) %></td>
+            <td><%= user.department.department.presence || '---' %></td>
+            <td><%= activ.in.strftime('%H:%M:%S').presence || '---' %></td>
+            <td><%= link_to("詳細", "/profile/info/#{user.user_id}",class:"btn btn-outline-primary") %></td>
+            </div>
+          </tr>
+        <% end %>
+        <% end %>
+        <% end %>
+      </table>
+    </div>
+</div>

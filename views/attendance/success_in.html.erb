@@ -1,0 +1,16 @@
+<meta http-equiv="Refresh" content="1.5; url=<%= request.referer %>">
+<%= audio_tag"/audio/in.mp3", autoplay: true, controls: false %>
+<body onload="document.getElementById('form-control').focus(); LoadProc();" style="background-color:#2d2d2d;">
+	<div class="date">
+	<%= @date %>
+	</div>
+	<div class="time">
+		今日も頑張るぞ
+	</div>
+	<div class="cate">
+		Process：
+	</div>
+	<div class="cate-text-I-S">
+		活動開始
+	</div>
+</body>

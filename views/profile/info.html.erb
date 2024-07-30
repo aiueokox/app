@@ -1,0 +1,430 @@
+<div class="Page-Area">
+  <% if request.referer&.include?("/profile/list") %>
+    <%= link_to(profile_list_path) do %>
+      <div class="Back-Link-Area">
+        <div class="Back-Link-Icon">
+          <span class="material-icons-outlined">
+          undo
+          </span>
+        </div>
+        <div class="Back-Link-Text">
+        一覧へ戻る
+        </div>
+      </div>
+    <% end %>
+  <% elsif request.referer&.include?("/profile/entry") %>
+    <%= link_to(profile_entry_path) do %>
+      <div class="Back-Link-Area">
+        <div class="Back-Link-Icon">
+          <span class="material-icons-outlined">
+          undo
+          </span>
+        </div>
+        <div class="Back-Link-Text">
+        一覧へ戻る
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <%= link_to :back do %>
+      <div class="Back-Link-Area">
+        <div class="Back-Link-Icon">
+          <span class="material-icons-outlined">
+          undo
+          </span>
+        </div>
+        <div class="Back-Link-Text">
+        一覧へ戻る
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+    <div class="Page-Title">
+    会員プロフィール
+    </div>
+    <div class="Page-Text">
+    会員情報の詳細を確認・編集することが可能です。
+    </div>
+    <div class="Dashboard-DoubleGroup">
+        <div class="Dashboard-DoubleGroupFrame">
+            <% if !(@profile.profile.image?) && current_user.id == @profile.id%>
+            <div class="Dashboard-DoubleGroupContent">
+                <div class="Content-Title">
+                アカウント承認・個人写真登録用QR
+                </div>
+                <% @qr = ::RQRCode::QRCode.new("#{request.protocol}/#{request.host}/profile/imageup/#{@profile.id}",  level: :h) %>
+                <%= image_tag ChunkyPNG::Image.from_datastream(@qr.as_png.to_datastream).resize(1500, 1500).to_data_url , class: 'Profile-Pic'%>
+                <div class="Content-Text">
+                この画面をSTAFFへ提示してください。<br>
+                STAFFは手続きを行ってください<br>
+                </div>
+            </div>
+            <%end%>
+            <div class="Dashboard-DoubleGroupContent">
+                <% if current_user.role_id.slice(2) >= "4" || current_user.id == @profile.id%>
+                <%= image_tag @profile.profile.image.to_s, class: 'Profile-Pic'%>
+                <% else %>
+                <%= image_tag "UserPic.png", class: 'Profile-Pic'%>
+                <% end %>
+                <div class="Column-Title">
+                ID
+                </div>
+                <div class="Column-Text">
+                <%= format("%06d", @profile.id).presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                氏名
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.username.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                氏名（フリガナ）
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.ruby.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                ニックネーム
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.nickname.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+            </div>
+            <% if current_user.role_id.slice(2) >= "4" || current_user.role_id.slice(5) >= "2" || current_user.id == @profile.id%>
+            <div class="Dashboard-DoubleGroupContent">
+                <div class="Dashboard-More-Title">
+                  アカウント管理
+                </div>
+                <div class="Dashboard-MoreArea">
+                    <div class="Dashboard-MoreSubTitle">
+                      ログイン情報
+                    </div>
+                    <div class="Column-Title">
+                      ログイン回数
+                    </div>
+                    <div class="Column-Text">
+                      <%= @profile.sign_in_count.presence || '未ログイン' %>
+                    </div>
+                    <div class="Column-Line"></div>
+                    <div class="Column-Title">
+                      最終ログイン日時
+                    </div>
+                    <div class="Column-Text">
+                    <%if @profile.current_sign_in_at.nil?%>
+                    未ログイン
+                    <%else%>
+                      <%= @profile.current_sign_in_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                    <%end%>
+                    </div>
+                    <div class="Column-Line"></div>
+                    <div class="Column-Title">
+                      前回ログイン日時
+                    </div>
+                    <div class="Column-Text">
+                    <%if @profile.last_sign_in_at.nil?%>
+                      未ログイン
+                    <%else%>
+                      <%= @profile.last_sign_in_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                    <%end%>
+                    </div>
+                    <div class="Column-Line"></div>
+                    <div class="Column-Title">
+                      最終情報更新日時
+                    </div>
+                    <div class="Column-Text">
+                      <%= @profile.profile.updated_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                    </div>
+                    <div class="Column-Line"></div>
+                    <div class="Column-Title">
+                      Google Work Space アカウント（連携ID）
+                    </div>
+                    <div class="Column-Text">
+                      <%= @profile.email%>
+                    </div>
+                    <div class="Column-Line"></div>
+                    <div class="Column-Title">
+                      権限ID
+                    </div>
+                    <div class="Column-Text">
+                      <%= @profile.role_id.presence || '---' %>
+                    </div>
+                    <div class="Column-Line"></div>
+                </div>
+                <% if current_user.role_id.slice(1) >= "5" || current_user.role_id.slice(0) >= "3" %>
+                <div class="Dashboard-MoreArea">
+                    <div class="Dashboard-MoreSubTitle">
+                      参照履歴
+                    </div>
+                    <% @logs.each do |log| %>
+                      <div class="Column-Text">
+                      <%= log.created_at.strftime('%Y年%m月%d日 %H時%M分%S秒') %>　<%= log.user.profile.username %>（<%= format("%06d", log.user.id) %>）<%= '[写真閲覧]' if log.event_name == 'profile_picture' %>                      
+                      </div>
+                      <div class="Column-Line"></div>
+                    <% end %>
+                </div>
+                <% end %>
+                <% if current_user.id == @profile.id%>
+                <div class="Action-bt-Area">
+                    <%= link_to("情報更新をリクエスト", "/profile/reqEdit/#{@profile.id}") %>
+                </div>
+                <%end%>
+                <% if current_user.role_id.slice(2) >= "5"%>
+                <div class="Action-bt-Area">
+                    <%= link_to("会員証発行", "/print/identityCard/#{@profile.id}") %>
+                </div>
+                <%end%>
+                <% if current_user.role_id.slice(2) >= "5"%>
+                <div class="Action-bt-Area">
+                    <%= link_to("所属プリセット登録", "/profile/assignment/#{@profile.id}") %>
+                </div>
+                <%end%>
+                <% if current_user.role_id.slice(5) >= "4"%>
+                <div class="Action-bt-Area">
+                    <%= link_to("権限付与・剥奪", "/role/assignment/#{@profile.id}") %>
+                </div>
+                <%end%>
+                <% if current_user.role_id.slice(5) >= "4"%>
+                <div class="Action-bt-Area">
+                    <%= link_to("写真登録", "/profile/imageup/#{@profile.id}") %>
+                </div>
+                <%end%>
+                <% if current_user.role_id.slice(5) >= "5"%>
+                <div class="Action-bt-Area">
+                    <%= link_to("情報更新", "/profile/edit/#{@profile.id}") %>
+                </div>
+                <%end%>
+                <% if current_user.role_id.slice(2) >= "5"%>
+                <div class="Action-bt-Area">
+                    <%= link_to("退会処理", "/leaved/#{@profile.id}") %>
+                </div>
+                <%end%>
+                <% if current_user.role_id.slice(0) == "4"%>
+                <div class="Action-bt-Area">
+                    <%= link_to("代理ログイン", "/master/login/#{@profile.id}") %>
+                </div>
+                <%end%>
+                <% if @profile.profile.leaved_at.presence && current_user.role_id.slice(5) >= "6"%>
+                <div class="Action-bt-Area-r">
+                    <%= link_to "アカウント抹消", destroy_user_session_path, method: :delete %>
+                </div>
+                <%end%>
+                <% if current_user.role_id.slice(2) >= "5" || current_user.role_id.slice(5) >= "1" %>
+                <div class="Action-bt-Area">
+                    <%= link_to("連携ID変更リクエスト", "/profile/reqConectID/#{@profile.id}") %>
+                </div>
+                <%end%>
+            </div>
+            <%end%>
+        </div>
+        <div class="Dashboard-DoubleGroupFrame">
+            <div class="Dashboard-DoubleGroupContent">
+                <div class="Dashboard-More-Title">
+                詳細情報
+                </div>
+                <div class="Dashboard-MoreArea">
+                <div class="Dashboard-MoreSubTitle">
+                基本情報
+                </div>
+                <div class="Column-Title">
+                ID
+                </div>
+                <div class="Column-Text">
+                <%= format("%06d", @profile.id).presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                氏名
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.username.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                氏名 (フリガナ)
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.ruby.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                ニックネーム
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.nickname.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                生年月日
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.dob.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                性別
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.sex.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                学内メールアドレス
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.student_num.downcase.presence || '---' %>@g.neec.ac.jp
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                メールアドレス
+                </div>
+                <div class="Column-Text">
+                <%= @profile.email.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                電話番号
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.phone.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                </div>
+                <div class="Dashboard-MoreArea">
+                <div class="Dashboard-MoreSubTitle">
+                在学情報
+                </div>
+                <div class="Column-Title">
+                学籍番号
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.student_num.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                カレッジ
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.course.college.name.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                学科
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.course.name.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                学科記号
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.course.symbol.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                クラス担任氏名（敬称略）
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.teacher_name.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                通学状況
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.commute.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                </div>
+                <div class="Dashboard-MoreArea">
+                <div class="Dashboard-MoreSubTitle">
+                所属情報
+                </div>
+                <div class="Column-Title">
+                所属組織
+                </div>
+                <div class="Column-Text">
+                学生委員会Act
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                所属部署
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.department.department.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                役職
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.department.position.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                所属状況
+                </div>
+                <div class="Column-Text">
+                <% if @profile.profile.leaved_at.presence%>
+                退会済
+                <%else%>
+                所属中
+                <%end%>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                入会日時
+                </div>
+                <div class="Column-Text">
+                <%= @profile.created_at.strftime('%Y/%m/%d %H:%M:%S').presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                退会日時
+                </div>
+                <div class="Column-Text">
+                <% if @profile.profile.leaved_at.blank?%>
+                ---
+                <%else%>
+                <%= @profile.profile.leaved_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                <% end %>
+                </div>
+                <div class="Column-Line"></div>
+                </div>
+                <% if current_user.id == @profile.id || current_user.role_id.slice(2) >= "5"%>
+                <div class="Dashboard-MoreArea">
+                <div class="Dashboard-MoreSubTitle">
+                保護者情報
+                </div>
+                <div class="Column-Title">
+                氏名
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.parent_name.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                電話番号
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.parent_phone.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                住所
+                </div>
+                <div class="Column-Text">
+                <%= @profile.profile.parent_address.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                </div>
+                <%end%>
+            </div>
+        </div>
+    </div>
+</div>

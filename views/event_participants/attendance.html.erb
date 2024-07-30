@@ -1,0 +1,38 @@
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="csrf-token" content="<%= form_authenticity_token %>">
+
+<div class="Page-Area">
+    <%= link_to(recruit_path) do %>
+    <div class="Back-Link-Area d-flex align-items-center">
+        <div class="Back-Link-Icon mr-2">
+        <span class="material-icons-outlined">
+        undo
+        </span>
+        </div>
+        <div class="Back-Link-Text">
+        人事管理へ戻る
+        </div>
+    </div>
+    <% end %>
+
+    <h2 class="Page-Title mt-4 mb-3">
+    イベント出席登録
+    </h2>
+
+    <p class="Page-Text mb-4">
+    イベント出席登録を行うことが可能です。
+    </p>
+
+    <div class="DashBoard">
+
+        <div class="touches_wrap touched_height">
+            <div class="flex toucehs_flex margin_tb">
+                <div class="camera-container">
+                    <canvas id="canvas"></canvas>
+                    <button id="toggle-camera-btn"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

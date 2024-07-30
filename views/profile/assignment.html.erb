@@ -1,0 +1,42 @@
+<div class="Page-Area">
+    <%= link_to(root_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        door_back
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      ホームへ戻る
+      </div>
+    </div>
+    <% end %>
+  <div class="Page-Title">
+  所属プリセット登録
+  </div>
+  <div class="Page-Text">
+  所属プリセットをユーザーに登録することができます。
+  </div>
+  <div class="Dashboard-DoubleGroup-w">
+    <div class="Dashboard-Contents">
+        <%= form_with(model: @profile, url: {controller: 'profile', action: 'grant'}) do |f| %>
+
+        <%= f.hidden_field :id,:value =>@grantProfile.id %>
+
+        <div class="form-group">
+          <%= f.label "所属プリセット" %>
+          <%= f.collection_select :dept_id, Department.all, :id, :view_department_and_position, :prompt => "所属プリセットを選択", class: 'form-control' %>
+        </div>
+
+      <div class="form-group">
+        <%= f.submit "Sign up", class: 'Submit-btn' %>
+      </div>
+    <% end %>
+
+    </div>
+    <div class="Dashboard-Contents">
+
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<meta http-equiv="refresh" content=<%="0.5;URL=#{@redirect}"%>>
+<script>
+    window.onload =  print();
+</script>
+<div class="printFrame sarmal">
+<div class="printTitle sarmal">
+学生委員会Act 管理備品
+</div>
+<div class="printBarcode sarmal">
+    <%= image_tag generate_code128B(format("%04d", @equipmentItem[0].id)) %>   
+</div>
+<div class="printTitle sarmal">
+<%="#{format("%04d", @equipmentItem[0].equipment.id)} - #{format("%04d", @equipmentItem[0].id)}"%>
+</div>
+<div class="printText sarmal">
+<%="#{@equipmentItem[0].equipment.name} #{@equipmentItem[0].equipment.size} #{@equipmentItem[0].equipment.remark}"%>
+</div>
+</div>

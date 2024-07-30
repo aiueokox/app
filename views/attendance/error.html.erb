@@ -1,0 +1,17 @@
+<meta http-equiv="Refresh" content="1.5; url=<%= request.referer %>">
+<%= audio_tag"/audio/error.mp3", autoplay: true, controls: false %>
+<body onload="document.getElementById('form-control').focus(); LoadProc();" style="background-color:#2d2d2d;">
+	<div class="date">
+		<%= @date %>
+	</div>
+	<div class="time">
+		(ﾟДﾟ≡ﾟДﾟ)?
+	</div>
+	<div class="cate">
+		Process：
+	</div>
+	<div class="cate-text-E">
+		ERROR
+	</div>
+	
+</body>

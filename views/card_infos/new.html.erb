@@ -1,0 +1,74 @@
+<div class="Page-Area">
+  <%= link_to account_path do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        undo
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      会計管理へ戻る
+      </div>
+    </div>
+  <% end %>
+  <div class="Page-Title">
+    カード情報登録
+  </div>
+  <div class="Page-Text">
+    新しいカード情報を登録することができます。
+  </div>
+  <div class="DashBoard">
+
+    <% if @card_info.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <strong><%= pluralize(@card_info.errors.count, "error") %> prohibited this card information from being saved:</strong>
+        <ul class="list-group mt-2">
+          <% @card_info.errors.full_messages.each do |message| %>
+            <li class="list-group-item list-group-item-danger"><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form_with model: @card_info, local: true do |form| %>
+      <div class="form-group">
+        <div class="form-title">
+          カードブランド
+        </div>
+        <%= form.select :card_brand, ['Visa', 'MasterCard'], class: 'form-control' %>        
+      </div>
+
+      <div class="form-group">
+        <div class="form-title">
+          カード名義
+        </div>
+        <%= form.text_field :card_holder_name, class: 'form-control', placeholder: 'TARO YAMADA' %>
+      </div>
+
+      <div class="form-group">
+        <div class="form-title">
+          カード番号
+        </div>
+        <%= form.number_field :card_number, class: 'form-control' %>
+      </div>
+
+    <div class="form-group">
+        <div class="form-title">
+        有効期限
+        </div>
+        <%= form.date_select :expiration_date, {order: [:month, :year], start_year: Date.today.year, end_year: Date.today.year + 10, use_month_numbers: true, default: Date.new(Date.today.year, Date.today.month, 1) }, class: 'form-control' %>
+    </div>
+
+      <div class="form-group">
+        <div class="form-title">
+          セキュリティコード
+        </div>
+        <%= form.number_field :security_code, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">  
+        <%= form.submit('登録', {class: 'btn-action'}) %>
+      </div>
+    <% end %>
+  </div>
+</div>

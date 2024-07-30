@@ -1,0 +1,222 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.Top-Page-Area{
+	width: 90%;
+	display: flex;
+	margin: auto;
+	align-items: flex-start;
+}
+.DashBoard-Top-Group{
+	order: 2;
+	margin: auto;
+	width: 75%;
+	border: solid 1.5px #2d2d2d;
+	background-color: #FFFFFF;
+	border-radius: 5px;
+	height: auto;
+	padding: 15px 20px;
+	margin-bottom: 40px;
+}
+.DashBoard-Top-Title{
+	font-weight: bold;
+	font-size: 2vw;
+	margin-bottom: 15px;
+	&.sec { 	
+		margin-top: 15px;}
+}
+.DashBoard-Status{
+	margin: auto;
+	display: flex;
+}
+.DashBoard-Status-Contents{
+	margin: auto;
+	width: 100%;
+	height: auto;
+	border: solid 3px #2d2d2d;
+	background-color: #FFFFFF;
+	border-radius: 20px;
+	padding: 20px;
+	display: flex;
+	font-weight: normal;
+	&.false { 	
+		border: solid 3px #a50000;
+		background-color: #ffbbbb;
+		color: #a50000; }
+	&.true { 	
+		border: solid 3px #2fa500;
+		background-color: #ceffbb;
+		color: #2fa500; }
+}
+.DashBoard-Status-Content-icon{
+	text-align: center;
+	margin: auto;
+	width: 40%;
+	height: auto;
+}
+.DashBoard-Status-Content-text{
+	margin: auto;
+	width: 60%;
+	height: auto;
+	text-align: center;
+	font-size: 1vw;
+	&.bold { 	
+		font-size: 2vw;
+		font-weight: bold;}
+}
+.DashBoard-Requests{
+	margin: auto;
+}
+.table tr {
+    padding-left: 5%;
+}
+.table td {
+    text-align: left;
+    padding: auto;
+}
+.SideBoard-Top-Group{
+	margin: auto;
+	margin-top: 0;
+	width: 22%;
+	margin-bottom: 40px;
+	order: 1;
+}
+.Top-link-menu{
+	background-color: #2d2d2d;
+    height: auto;
+    border-radius: 5px;
+    text-align:left;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, .2);
+    margin: auto;
+    box-sizing: border-box;
+    padding-bottom: 5%;
+	margin-bottom: 5%;
+}
+.Top-link-menu-Title{
+    width: 40%;
+    height: 15%;
+    padding: 1% 0 0 2%;
+    color: #FFFFFF;
+    font-size: 1.2em;
+    font-family: 'Sawarabi Gothic', sans-serif;	
+    font-weight: bold;
+}
+.Top-link-menu-list {
+    list-style:none;
+    margin: auto;
+    width: 100%;
+}
+
+.Top-link-menu-list a {
+    font-size: 0.9em;
+    display: block;
+    color: rgb(99, 99, 99);
+    padding: 5px;
+    width: 100%;
+    background-color: #fff;
+    height: 40px;
+}
+.Top-link-menu-list a:hover {
+    display: block;
+    color: white;
+    background-color: #2d2d2d;
+    width: 100%;
+    transition: 0.3s;
+}
+.Top-DashBoard-Line-brack{
+    border-bottom:1px solid #2d2d2d;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    color: #2d2d2d;
+}
+.Top-DashBoard-Line-w{
+    border-bottom:1px solid #ffffff;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    color: #ffffff;
+}
+.Top-GroupInfo{
+    height: auto;
+    text-align:left;
+    margin: auto;
+    box-sizing: border-box;
+    padding-bottom: 5%;
+}
+.Top-GroupInfo-Title{
+    height: auto;
+	background-color: #2d2d2d;
+	color: #fff;
+    text-align:left;
+    margin: auto;
+    box-sizing: border-box;
+	padding: 1% 0 0 2%;
+	font-weight: bold;
+	font-size: 1.2em;
+	margin-bottom: 10px;
+}
+.Top-GroupInfo-Name{
+    height: auto;
+	color: #2d2d2d;
+    text-align:left;
+    margin: auto;
+    box-sizing: border-box;
+	padding: 1% 0 0 2%;
+	font-size: 0.9em;
+	font-weight: bold;
+	border-bottom: solid 1px #2d2d2d;
+	width: 100%;
+	margin-bottom: 20px;
+}
+.Top-GroupInfo-Text{
+    height: auto;
+	color: #2d2d2d;
+    text-align:left;
+    margin: auto;
+    box-sizing: border-box;
+	padding: 1% 0 0 2%;
+	font-size: 0.9em;
+	width: 100%;
+	margin-bottom: 20px;
+}
+.iframe{
+	width: 100%;
+	height: 100vh;
+}
+@media screen and (max-width: 500px) {
+	.DashBoard-Top-Title{
+		font-size: 5vw;
+	}
+    .DashBoard-Top-Group{
+		width: 95%;
+		margin-top: 40px;
+		order: 1;
+    }
+	.DashBoard-Status{
+		display: inline;
+	}
+	.DashBoard-Status-Contents{
+		width: 100%;
+	}
+	.DashBoard-Status-Content-line{
+		margin: auto;
+		margin-top: 2vw;
+		margin-bottom: 2vw;
+		width: 80%;
+		border-bottom: solid 1.5px #2d2d2d;
+	}
+	.DashBoard-Status-Content-text{
+		font-size: 3vw;
+		&.bold { 	
+			font-size: 5vw;}
+	}
+	.Top-Page-Area{
+		width: 100%;
+		display: inline;
+	}
+	.SideBoard-Top-Group{
+		width: 95%;
+		order: 2;
+	}
+}

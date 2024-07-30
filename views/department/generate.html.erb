@@ -1,0 +1,46 @@
+<div class="Page-Area">
+    <%= link_to(root_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        door_back
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      ホームへ戻る
+      </div>
+    </div>
+    <% end %>
+  <div class="Page-Title">
+  部署・役職のプリセットを作成
+  </div>
+  <div class="Page-Text">
+  部署・役職のプリセットを作成することができます。<br>
+  作成後の削除、編集はできませんのでよく確認の上お進みください。
+  </div>
+  <div class="Dashboard-DoubleGroup-w">
+    <div class="Dashboard-Contents">
+        <%= form_with(model: @department, url: {controller: 'department', action: 'new'}) do |f| %>
+
+        <div class="form-group">
+          <%= f.label "部署名" %>
+          <%= f.text_field :department, required: true, class: 'form-control'%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "役職名" %>
+          <%= f.text_field :position, required: true, class: 'form-control'%>
+        </div>
+
+      <div class="form-group">
+        <%= f.submit "Sign up", class: 'Submit-btn' %>
+      </div>
+    <% end %>
+
+    </div>
+    <div class="Dashboard-Contents">
+
+
+    </div>
+  </div>
+</div>

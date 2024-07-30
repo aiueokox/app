@@ -1,0 +1,63 @@
+<%# app/views/department/select_staffs.html.erb %>
+<div class="Page-Area">
+  <%= link_to(department_assignment_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        undo
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      所属プリセット選択へ戻る
+      </div>
+    </div>
+  <% end %>
+    <div class="Page-Title">
+    一括登録対象の選択
+    </div>
+    <div class="Page-Text">
+    所属プリセットを一括で登録するユーザーを選択してください。
+    </div>
+    <div class="DashBoard">
+        <span id="selectedCount">0</span> 人が選択されています
+    </div>
+    <div class="DashBoard">
+
+        <%= form_with model: @profile, url: add_staff_dept_designations_path(@dept), method: :patch, local: true do |f| %>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="select_all" /></th>
+                        <th>ID</th>
+                        <th>氏名</th>
+                        <th>フリガナ</th>
+                        <th>あだ名</th>
+                        <th>性別</th>
+                        <th>学籍番号</th>
+                        <th>学科(学科記号)</th>
+                        <th>所属部署</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @users.each do |user| %>
+                    <tr>
+                        <td><%= check_box_tag 'dept[user_ids][]', user.id, false %></td>
+                        <td><%= format("%06d", user.id) %></td>
+                        <td><%= user.profile.username %></td>
+                        <td><%= user.profile.ruby %></td>
+                        <td><%= user.profile.nickname %></td>
+                        <td><%= user.profile.sex %></td>
+                        <td><%= user.profile.student_num %></td>
+                        <td><%= user.profile.course.name %></td>
+                        <td><%= user.profile.department.department %></td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <div class="form-group">  
+                <%= f.submit('所属プリセットの登録', {class: 'btn-action'}) %>
+            </div>
+        <% end %>
+
+    </div>
+</div>

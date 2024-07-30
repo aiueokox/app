@@ -1,0 +1,16 @@
+<div class="Sign-In-Page-Logo">
+<%= image_tag 'LogoR.png', alt: "logo" %>
+</div>
+<div class="PasswordFormArea">
+        <%= form_with(model: @entry, url: {controller: 'entry', action: 'check'}) do |f| %>
+        <div class="form-group">
+          <%= f.label "招待コード" %>
+           <%= f.text_field :inviteCode, required: true, class: 'form-control'%>
+        </div>
+
+            <div class="form-group">  
+            <%= f.submit('手続きへ進む', {class: 'btn-action'}) %>
+            </div>
+    <% end %>
+
+</div>

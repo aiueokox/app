@@ -1,0 +1,58 @@
+<div class="Page-Area">
+  <%= link_to(request_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        undo
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      申請管理へ戻る
+      </div>
+    </div>
+  <% end %>
+    <div class="Page-Title">
+    申請リスト
+    </div>
+    <div class="Page-Text">
+    申請を一覧で確認することが可能です。
+    </div>
+    <div class="DashBoard">
+        <table class="table">
+            <tr>
+                <td>状況</td>
+                <td>申請者</td>
+                <td>申請日時</td>
+                <td>最終更新日時</td>
+                <td>申請者の所属</td>
+            </tr>
+            <% @requests.each do |request| %>
+                <% if request.user_id == current_user.id || current_user.role_id.slice(0) >= "4" || current_user.role_id.slice(1) >= "2" %>
+                <tr>
+                    <div class="list-item">
+                        <% if request.status == "success" %>
+                            <td><span class="badge badge-success">完了</span></td>
+                        <% elsif request.status == "danger"%>
+                            <td><span class="badge badge-danger">否認</span></td>
+                        <% else %>
+                            <td><span class="badge badge-info">承認待ち</span></td>
+                        <%end%>
+                        <% @requestsUser.each do |requestUser| %>
+                            <% if requestUser.user_id == request.user_id %>
+                            <td><%= link_to("#{requestUser.username}（#{format("%06d", requestUser.user_id)}）さんの#{request.title}", "/request/info/#{request.id}",class:"list-link") %></td>
+                            <%end%>
+                        <%end%>
+                        <td><%= request.created_at.strftime('%Y/%m/%d %H:%M:%S').presence || '---' %></td>
+                        <td><%= request.updated_at.strftime('%Y/%m/%d %H:%M:%S').presence || '---' %></td>
+                        <% @requestsUser.each do |requestUser| %>
+                            <% if requestUser.user_id == request.user_id %>
+                            <td><%= requestUser.department.department.presence || '---' %>/<%= requestUser.position.presence || '---' %></td>
+                            <%end%>
+                        <%end%>
+                    </div>
+                </tr>
+                <%end%>
+            <% end %>
+        </table>
+    </div>
+</div>

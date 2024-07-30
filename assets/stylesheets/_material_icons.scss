@@ -1,0 +1,16 @@
+.material-icons-outlined {
+    &.md-18 { font-size: 18px; }
+    &.md-24 { font-size: 24px; }
+    &.md-36 { font-size: 36px; }
+    &.md-48 { font-size: 48px; }
+    &.vw-48 { font-size: 10vw; }
+    &.vw-4 { font-size: 4vw; }
+    &.vw-2 { font-size: 2vw; }
+  }
+@media screen and (max-width: 500px) {
+    .material-icons-outlined {
+    &.vw-48 { font-size: 20vw; }
+    &.vw-4 { font-size: 12vw; }
+    &.vw-2 { font-size: 6vw; }
+    }
+}

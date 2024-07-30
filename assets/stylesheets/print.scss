@@ -1,0 +1,312 @@
+// Place all the styles related to the print controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+.printArea{
+	background-color: rgb(255, 255, 255);
+	height: auto;
+	width: auto;
+	margin: 0!important;
+	display: inline-block!important;
+	&.A{
+		width: 200mm;
+		height: 286mm;
+	}
+
+}
+.printFrame{
+    &.sarmal { 	
+        border: solid 1px #2d2d2d;
+        width: 70mm;
+        height: auto;
+		margin: auto;
+        margin-top: 0;
+        margin-left: 2mm;
+        margin-bottom: 2mm;
+    }
+}
+.printTitle{
+    &.sarmal { 	
+        text-align: center;
+        width: 55mm;
+        font-weight: bold;
+        margin: auto;
+        height: auto;
+        margin-top: 1mm;
+        margin-bottom: 1mm;
+    }
+}
+.printText{
+    &.sarmal { 	
+        font-size: 2px;
+        text-align: center;
+        width: 55mm;
+        font-weight: bold;
+        margin: auto;
+        height: auto;
+        margin-top: 1mm;
+        margin-bottom: 1mm;
+    }
+}
+.printBarcode{
+    width: 95%;
+    height: 15mm;
+    box-sizing: border-box;
+    &.sarmal { 	
+        text-align: center;
+        font-weight: bold;
+        margin: auto;
+        margin-top: 1mm;
+        margin-bottom: 1mm;
+        padding: 1mm;
+    }
+}
+.printBarcode img{
+    height: 100%;
+    width:100%;
+    object-fit: cover;
+    display: block;
+}
+.CardFrame_n{
+	width: 58mm;
+	height: 97.6mm;
+	background-color: #FFF;
+	border: solid 0.5px #000000;
+}
+.CardFrame_n .CardArea{
+	margin: auto;
+	margin-top: 25%;
+	width: 75%;
+	height: auto;
+}
+.CardFrame_b .CardArea{
+	margin: auto;
+	margin-top: 25%;
+	width: 75%;
+	height: auto;
+}
+.CardFrame_n .CardArea .CardLogo{
+	margin: auto;
+	width: 40%;
+	height: 25%;
+	margin-bottom: 17%;
+}
+.CardFrame_n .CardArea .CardLogo img{
+    width: 100%;
+}
+.CardFrame_n .CardArea .CardTextFName_n{
+	margin: auto;
+	width: auto;
+	text-align: center;
+	margin-bottom: 12%;
+	font-family: 'Noto Sans JP', sans-serif;
+	color: #3d3d3d;
+}
+.CardFrame_n .CardArea .CardTextRole_n{
+	margin: auto;
+	width: auto;
+	text-align: center;
+	font-size: 10px;
+	font-family: 'Noto Sans JP', sans-serif;
+	color: #3d3d3d;
+}
+.CardFrame_n .CardArea .CardBarCode_n{
+	margin: auto;
+	padding: 0.25mm;
+	margin-top: 17%;
+	height: auto;
+	width: auto;
+	border: solid 0.5px #3d3d3d;
+	text-align: center;
+	height: 8.5mm;
+	background-color: #FFF;
+    box-sizing: content-box;
+}
+.CardFrame_n .CardArea .CardBarCode_n img{
+    width: 100%;
+}
+.TermsSheet{
+	border: solid;
+	height: 70mm;
+	width: 100%;
+    background-color: #FFF;
+}
+.TermsSheet .TermsSheettitiles{
+	padding-top: 3mm;
+	width: 100%;
+	display: flex;
+}
+.TermsSheet .TermsSheettitile{
+	margin: 0 0 0 10mm;
+	width: auto;
+	text-align: center;
+	font-weight: bold;
+	font-size: 15px;
+}
+.TermsSheet .TermsSheetDate{
+	margin-left: 76mm;
+	width: auto;
+	text-align: center;
+	font-weight: bold;
+	font-size: 15px;
+}
+.TermsSheet .TermsSheetG{
+	margin: 5mm 0 0 50mm;
+	width: auto;
+	text-align: center;
+	font-size: 18px;
+}
+.TermsSheet .TermsSheetSign{
+	margin: 0 0 0 147mm;
+	padding-top: 0.5mm;
+	border: solid;
+	width: 15%;
+	height: 5mm;		
+	text-align: center;
+	font-size: 13px;
+}
+.TermsSheet .TermsSheetSignF{
+	margin: 0 0 0 147mm;
+	padding-top: 3mm;
+	border: solid;
+	width: 15%;
+	height:10mm;		
+	text-align: center;
+	font-size: 18px;
+}
+.TermsSheet .TermsSheetN{
+	margin: 5mm 0 0 0mm;
+	width: auto;
+	text-align: center;
+	font-size: 18px;
+}
+.TermsSheet .TermsSheetText{
+	margin: 5mm 0 0 0mm;
+	border-bottom: solid;
+	width: 20%;
+	text-align: center;
+	font-size: 18px;
+}
+.TermsSheet .TermsSheetTexts{
+	margin: auto;
+	padding: 6mm 0 0 0;
+	width: 90%;
+	font-size: 18px;
+}
+
+.receipt-container {
+    width: 210mm;
+    height: 297mm;
+    background-color: #ffffff;
+    padding: 20mm;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.receipt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.receipt-header-left {
+    display: flex;
+    align-items: center;
+}
+
+.receipt-logo {
+    width: 120px;
+    margin-right: 20px;
+}
+
+.receipt-title {
+    font-size: 28px;
+    margin: 0;
+    color: #000;
+    font-weight: bold;
+}
+
+.receipt-info {
+    text-align: right;
+    font-size: 14px;
+    color: #555;
+}
+
+.receipt-divider {
+    border: 0;
+    height: 2px;
+    background: #000;
+    margin: 20px 0;
+}
+
+.receipt-address, .receipt-details, .receipt-summary, .receipt-footer {
+    margin-bottom: 15px;
+}
+
+.receipt-address p, .receipt-details p, .receipt-summary p, .receipt-footer p {
+    margin: 8px 0;
+    font-size: 16px;
+    color: #000;
+}
+
+.receipt-label {
+    font-weight: bold;
+    color: #000;
+}
+
+.receipt-value {
+    color: #000;
+    font-weight: bold;
+}
+
+.receipt-large {
+    font-size: 25px;
+}
+
+.receipt-small {
+    font-size: 14px;
+}
+
+.receipt-note {
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.center {
+    text-align: center;
+}
+
+.receipt-summary p {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    font-weight: bold;
+    color: #000;
+}
+
+.receipt-footer {
+    text-align: right;
+}
+
+.receipt-footer-label {
+    font-weight: bold;
+    color: #000;
+}
+
+.receipt-footer-value {
+    font-size: 16px;
+    color: #000;
+}
+
+.receipt-footer-logo {
+    width: 260px;
+    margin-top: 10px;
+}

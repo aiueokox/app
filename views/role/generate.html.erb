@@ -1,0 +1,46 @@
+<div class="Page-Area">
+    <%= link_to(root_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        door_back
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      ホームへ戻る
+      </div>
+    </div>
+    <% end %>
+  <div class="Page-Title">
+  権限グループを作成
+  </div>
+  <div class="Page-Text">
+  権限グループを作成することができます。<br>
+  最小権限の原則を基にグループの作成を行なってください。
+  </div>
+  <div class="Dashboard-DoubleGroup-w">
+    <div class="Dashboard-Contents">
+        <%= form_with(model: @role, url: {controller: 'role', action: 'new'}) do |f| %>
+
+        <div class="form-group">
+          <%= f.label "権限ID" %>
+          <%= f.text_field :code, required: true, class: 'form-control'%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "プリセット" %>
+          <%= f.collection_select :department_id, Department.all, :id, :view_department_and_position, :prompt => "所属・役職プリセットを選択", class: 'form-control' %>
+        </div>
+
+      <div class="form-group">
+        <%= f.submit "Sign up", class: 'Submit-btn' %>
+      </div>
+    <% end %>
+
+    </div>
+    <div class="Dashboard-Contents">
+
+
+    </div>
+  </div>
+</div>

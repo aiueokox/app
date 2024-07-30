@@ -1,0 +1,44 @@
+<div class="Page-Area">
+  <%= link_to(recruit_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        undo
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      人事管理へ戻る
+      </div>
+    </div>
+  <% end %>
+    <div class="Page-Title">
+    入会対応待ち
+    </div>
+    <div class="Page-Text">
+    新規入会対応待ち者の一覧を確認できます
+    </div>
+    <div class="DashBoard">
+      <table class="table">
+        <tr>
+            <td>ID</td>
+            <td>氏名</td>
+            <td>ニックネーム</td>
+            <td>性別</td>
+            <td>学科</td>
+            <td></td>
+        </tr>
+        <% @profiles.each do |user| %>
+          <tr>
+            <div class="list-item">
+            <td><%= link_to(format("%06d", user.user_id.presence || '---'), "/profile/info/#{user.user_id}",class:"list-link") %></td>
+            <td><%= user.username.presence || '---' %></td>
+            <td><%= user.nickname.presence || '---' %></td>
+            <td><%= user.sex.presence || '---' %></td>
+            <td><%= course_name(user.course_id) %></td>
+            <td><%= link_to("詳細", "/profile/info/#{user.user_id}",class:"btn btn-outline-primary") %></td>
+            </div>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+</div>

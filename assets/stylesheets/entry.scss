@@ -1,0 +1,44 @@
+// Place all the styles related to the entry controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.Qr-Pic{
+    margin: auto;
+    width: 100%;
+    height: auto;
+    display: block;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+  }
+.Qr-Pic img{
+width: 100%;
+height: auto;
+object-fit: cover;
+}
+.PickUpText{
+margin: auto;
+text-align: center;
+width: 100%;
+height: auto;
+color: #2d2d2d;
+font-size: 2em;
+font-weight: bold;
+&.red{
+    color: #FF574D;
+}
+}
+.PasswordFormArea{
+    padding: 10px;
+    margin: auto;
+    margin-top: 5vw;
+    width: 20%;
+    background-color: #FFF;
+    border: solid rgb(196, 196, 196);
+    border-radius: 3px;
+}
+ // 画面が小さい時
+ @media screen and (max-width: 500px) {
+    .PasswordFormArea{
+        margin-top: 10vw;
+        width: 50%;
+    }
+ }

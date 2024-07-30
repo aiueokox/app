@@ -1,0 +1,124 @@
+<div class="Page-Area">
+  <%= link_to("/profile/info/#{@user.user_id}") do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        undo
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      プロフィールへ戻る
+      </div>
+    </div>
+  <% end %>
+  <div class="Page-Title">
+  アカウント情報を更新
+  </div>
+  <div class="Page-Text">
+  サークル活動支援サービス「ACTION」ユーザーアカウント情報を更新いたします。<br>
+  以下、フォームをすべてご入力の上お進みください。
+  </div>
+  <div class="Dashboard-DoubleGroup-w">
+    <div class="Dashboard-Contents">
+        <%= form_with(model: @profile, url: {controller: 'profile', action: 'reqUserUpdate'}) do |f| %>
+
+        <div class="field">
+          <%= f.hidden_field :user_id,:value =>@user.user_id %>
+          <%= f.hidden_field :status,:value =>"no" %>
+          <%= f.hidden_field :department_id,:value =>@user.department_id %>
+          <%= f.hidden_field :course_id,:value =>@user.course_id %>
+        </div>
+        <div class="field">
+          <%= f.hidden_field :image,:value =>@user.image%>
+        </div>
+        <div class="form-group">
+          <%= f.hidden_field :created_at,:value => @user.created_at%>
+        </div>
+        <div class="form-group">
+          <%= f.hidden_field :updated_at, value: Time.now%>
+        </div>
+        <div class="form-group">
+          <%= f.label "氏名" %>
+          <%= f.text_field :username, required: true, autocomplete: 'name', class: 'form-control',:value => @user.username%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "フリガナ" %>
+          <%= f.text_field :ruby, required: true, autocomplete: 'ruby', class: 'form-control',:value => @user.ruby%>
+        </div>
+
+        <div class="form-group">
+          <%= f.hidden_field :first_name,:value => @user.first_name%>
+        </div>
+
+        <div class="form-group">
+          <%= f.hidden_field :last_name,:value => @user.last_name%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "ニックネーム" %>
+          <%= f.text_field :nickname, required: true, class: 'form-control', :value => @user.nickname%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "性別" %>
+          <%= f.select :sex, options_for_select([['男性', '男性'],['女性', '女性'], ['その他', 'その他']], :selected => @user.sex), {:prompt => '性別を選択してください'}, required: true, class: 'form-control', :value => @user.sex%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "生年月日" %>
+          <%= f.date_field :dob, required: true, class: 'form-control',:value => @user.dob%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "電話番号" %>
+          <%= f.text_field :phone, required: true, autocomplete: 'phone', class: 'form-control',:value => @user.phone%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "所属学科" %>
+          <%= f.collection_select :course_id, Course.where('id != 1'), :id, :name, {:prompt => "学科を選択してください", :selected => @user.course_id}, required: true, class: 'form-control', :value => @user.course_id%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "学籍番号" %>
+          <%= f.text_field :student_num, required: true, class: 'form-control',:value => @user.student_num%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "担任教員名（敬称略）" %>
+          <%= f.text_field :teacher_name, required: true, class: 'form-control',:value => @user.teacher_name%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "通学状況" %>
+          <%= f.select :commute, options_for_select([['実家', '実家'], ['ひとり暮らし', 'ひとり暮らし'], ['京浜寮', '京浜寮'], ['城南寮', '城南寮'], ['蒲田寮', '蒲田寮'], ['多摩川寮', '多摩川寮'], ['その他', 'その他']], :selected => @user.commute), {:prompt => '通学形態を選択してください'}, required: true, class: 'form-control', :value => @user.commute%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "保護者氏名" %>
+          <%= f.text_field :parent_name, required: true, class: 'form-control',:value => @user.parent_name%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "保護者電話番号" %>
+          <%= f.text_field :parent_phone, required: true, class: 'form-control',:value => @user.parent_phone%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "保護者住所" %>
+          <%= f.text_field :parent_address, required: true, class: 'form-control',:value => @user.parent_address%>
+        </div>
+
+      <div class="form-group">
+        <%= f.submit "Sign up", class: 'Submit-btn' %>
+      </div>
+    <% end %>
+
+    </div>
+    <div class="Dashboard-Contents">
+
+
+    </div>
+  </div>
+</div>

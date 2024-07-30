@@ -1,0 +1,48 @@
+<div class="Page-Area">
+  <div class="Page-Title">
+  アカウント情報を更新
+  </div>
+  <div class="Page-Text">
+  サークル活動支援サービス「ACTION」ユーザーアカウント情報を更新いたします。<br>
+  以下、フォームをすべてご入力の上お進みください。
+  </div>
+  <div class="Dashboard-DoubleGroup-w">
+    <div class="Dashboard-Contents">
+        <%= form_with(model: @profile, url: {controller: 'profile', action: 'UserUpdate'}) do |f| %>
+
+
+          <%= f.hidden_field :user_id,:value =>@user.user_id %>
+          <%= f.hidden_field :created_at,:value => @user.created_at%>
+          <%= f.hidden_field :updated_at,:value => @user.updated_at%>
+          <%= f.hidden_field :username,:value => @user.username%>
+          <%= f.hidden_field :ruby, required: true,:value => @user.ruby%>
+          <%= f.hidden_field :first_name,:value => @user.first_name%>
+          <%= f.hidden_field :last_name,:value => @user.last_name%>
+          <%= f.hidden_field :nickname,:value => @user.nickname%>
+          <%= f.hidden_field :sex,:value => @user.sex%>
+          <%= f.hidden_field :dob,:value => @user.dob%>
+          <%= f.hidden_field :phone,:value => @user.phone%>
+          <%= f.hidden_field :student_num,:value => @user.student_num%>
+          <%= f.hidden_field :teacher_name,:value => @user.teacher_name%>
+          <%= f.hidden_field :commute,:value => @user.commute %>
+          <%= f.hidden_field :parent_name,:value => @user.parent_name%>
+          <%= f.hidden_field :parent_phone,:value => @user.parent_phone%>
+          <%= f.hidden_field :parent_address,:value => @user.parent_address%>
+          <%= f.hidden_field :department_id,:value => @user.department_id%>
+          <%= f.hidden_field :course_id,:value => @user.course_id%>
+          <%= f.label :post_image%>
+          <%= f.file_field :image%>
+
+
+      <div class="form-group">
+        <%= f.submit "Sign up", class: 'Submit-btn' %>
+      </div>
+    <% end %>
+
+    </div>
+    <div class="Dashboard-Contents">
+
+
+    </div>
+  </div>
+</div>

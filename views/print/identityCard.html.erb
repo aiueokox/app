@@ -1,0 +1,53 @@
+<div class="CardFrame_n">
+    <div class="CardArea">
+        <div class="CardLogo">
+            <%= image_tag "Card_Gray_Act_Logo.png"%>
+        </div>
+        <div class="CardTextFName_n">
+            <%= @profile.nickname.presence || '---'%>
+        </div>
+        <div class="CardTextRole_n">
+            <%= @profile.department.department.presence || '---'%>
+        </div>
+        <div class="CardTextRole_n">
+            <%= @profile.department.position.presence || '---'%>
+        </div>
+        <div class="CardBarCode_n">
+            <%= image_tag generate_code128B(format("%06d", @profile.user_id)) %>
+        </div>
+    </div>
+</div>
+<div class="TermsSheet">
+    <div class="TermsSheettitiles">
+        <div class="TermsSheettitile">
+        【担任報告用紙】
+        </div>
+        <div class="TermsSheetDate">
+        （西暦）<%= Date.current.strftime('%Y年%m月%d日') %>
+        </div>
+    </div>
+    <div class="TermsSheettitiles">
+        <div class="TermsSheetG">
+        学籍番号
+        </div>
+        <div class="TermsSheetText">
+        <%= @profile.student_num.presence || '---'%>
+        </div>
+        <div class="TermsSheetN">
+        氏名
+        </div>
+        <div class="TermsSheetText">
+        <%= @profile.username.presence || '---'%>
+        </div>
+    </div>
+    <div class="TermsSheetTexts">
+    本年度、「 学生委員会"Act" 」に加入したことを報告致します。<br>
+    学業との両立を心掛け、取り組むことを併せて約束いたします。
+    </div>
+    <div class="TermsSheetSign">
+    サークル代表
+    </div>
+    <div class="TermsSheetSignF">
+    <%= @president.username%>
+    </div>
+</div>

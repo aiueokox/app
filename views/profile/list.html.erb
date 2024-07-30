@@ -1,0 +1,120 @@
+<div class="Page-Area">
+  <%= link_to(root_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        door_back
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      ホームへ戻る
+      </div>
+    </div>
+  <% end %>
+    <div class="Page-Title">
+    会員リスト
+    </div>
+    <div class="Page-Text">
+    所属している会員を一覧で確認することが可能です。
+    </div>
+    <div class="filter-Board">
+      <%= form_with(scope: :search, url: profile_list_path, method: :get, ) do |f| %>
+        <div class="form-group">
+          <div class="form-title">
+            ID
+          </div>
+          <%= f.text_field :user_id, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <div class="form-title">
+            氏名
+            </div>
+          <%= f.text_field :ruby, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <div class="form-title">
+            ニックネーム
+          </div>
+          <%= f.text_field :nickname, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <div class="form-title">
+            性別
+          </div>
+          <%= f.select(:sex, {'男性': '男性', '女性': '女性', 'その他': 'その他'}, {include_blank: '性別を選択'}, {class: 'form-control'}) %>
+        </div>
+        <div class="form-group">
+          <div class="form-title">
+            所属カレッジ
+          </div>
+          <%= f.collection_select :college_id, College.where('id != 1'), :flag, :name, {:prompt => "カレッジを選択"}, {class: 'form-control'} %>
+        </div>
+        <div class="form-group">
+          <div class="form-title">
+            所属学科
+          </div>
+          <%= f.collection_select :course_id, Course.where('id != 1'), :id, :name, {:prompt => "学科を選択"}, {class: 'form-control'} %>
+        </div>
+        <div class="form-group">
+          <div class="form-title">
+            所属部署
+          </div>
+          <%= f.collection_select :department_id, Department.all, :id, :view_department_and_position, {:prompt => "部署の選択"}, {class: 'form-control'} %>
+        </div>
+        <div class="form-group">
+          <%= f.submit('検索', {class: 'btn-action'}) %>
+        </div>
+      <% end %>
+    </div>
+    <div class="DashBoard">
+      <table class="table">
+        <tr>
+            <%# <td></td> %>
+            <td>ID</td>
+            <td>氏名</td>
+            <td>ニックネーム</td>
+            <td>性別</td>
+            <td>学科</td>
+            <td>所属部署</td>
+            <td></td>
+            <% if current_user.role_id.slice(2) >= "5"%>
+            <td></td>
+            <% end %>
+            <% if current_user.role_id.slice(5) >= "4"%>
+            <td></td>
+            <% end %>
+        </tr>
+        <% @profile_search.each do |user| %>
+          <tr>
+            <div class="list-item">
+            <%# 表示速度が著しく低下するためコメントアウト %>
+            <%# <td style="width:5%"> %>
+            
+            <%# <div class="list-UserPicFrame">%>
+              <%# if current_user.role_id.slice(2) >= "4" || current_user.id == user.user_id%>
+                <%#= image_tag user.image_url, class: 'list-UserPic' %>
+              <%# else %>
+                <%#= image_tag "UserPic.png", class: 'list-UserPic' %>
+              <%# end %>
+            <%# </div> %>
+            
+            <%# </td> %>
+            <td><%= link_to(format("%06d", user.user_id.presence || '---'), "/profile/info/#{user.user_id}",class:"list-link") %></td>
+            <td><%= user.username.presence || '---' %></td>
+            <td><%= user.nickname.presence || '---' %></td>
+            <td><%= user.sex.presence || '---' %></td>
+            <td><%= course_name(user.course_id) %></td>
+            <td><%= user.department.department.presence || '---' %></td>
+            <td><%= link_to("詳細", "/profile/info/#{user.user_id}",class:"btn btn-outline-primary") %></td>
+            <% if current_user.role_id.slice(2) >= "5"%>
+            <td><%= link_to("所属登録", "/profile/assignment/#{user.user_id}",class:"btn btn-outline-primary") %></td>
+            <% end %>
+            <% if current_user.role_id.slice(5) >= "4"%>
+            <td><%= link_to("権限付与・剥奪", "/role/assignment/#{user.user_id}",class:"btn btn-outline-primary") %></td>
+            <% end %>
+            </div>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+</div>

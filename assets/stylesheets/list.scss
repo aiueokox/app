@@ -1,0 +1,33 @@
+.list-item{
+	margin: auto;
+}
+table tr a {
+    display: block;       /* リンクをブロックレベル化して表示 */
+ }
+.list-UserPicFrame{
+    width: 10%;
+}
+.list-UserPicFrame .list-UserPic{
+    border: 1px #f8f7f6;
+    text-align:left;
+    box-sizing: border-box;
+    display: block;
+    margin: auto;
+    padding: 0 0 0 0;
+    width: 40px;
+    height: 40px;
+    //サイズ指定
+    border-radius: 100px;
+    //画像を丸くする
+    object-fit: cover;
+    //タテヨコ比を変えないままトリミング
+}
+.list-link{
+	text-decoration: none!important;
+	color:inherit!important;
+	text-decoration: none!important;
+}
+.list-link a :hover{
+	text-decoration: none!important;
+	font-weight: bold!important;
+  }

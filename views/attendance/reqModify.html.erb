@@ -1,0 +1,46 @@
+<div class="Page-Area">
+  <%= link_to("attendance/log") do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        undo
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      全活動記録へ戻る
+      </div>
+    </div>
+  <% end %>
+  <div class="Page-Title">
+  打刻漏れ修正申請
+  </div>
+  <div class="Page-Text">
+  活動時間の打刻漏れ修正を行います。<br>
+  入退室の種別は入力された時刻から自動で判別されます。<br>
+  ※対象は本日分のみ指定できます
+  </div>
+  <div class="Dashboard-DoubleGroup-w">
+    <div class="Dashboard-Contents">
+    <div class="DashBoard">
+    <%= form_with(model: @attendances, url: {controller: 'attendance', action: 'reqModifyUpdate'}) do |f| %>
+    <%= f.hidden_field :user_id,:value =>current_user.id %>
+    <div class="form-group">
+    <%= f.label "対象日" %>
+		<%= f.date_field :today, required: true, disabled: true,:value =>Date.current.strftime("%Y-%m-%d") %>
+    </div>
+    <div class="form-group">
+    <%= f.label "打刻修正時刻" %>
+		<%= f.time_field :time, required: true, autofocus: true, :value => "00:00:00" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "申請", class: 'Submit-btn' %>
+    </div>
+    <% end %>
+    </div>
+    <div class="Dashboard-Contents">
+
+
+    </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+<div class="Page-Area">
+  <%= link_to(root_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        door_back
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      ホームへ戻る
+      </div>
+    </div>
+  <% end %>
+  <div class="Page-Title">
+  申請管理
+  </div>
+  <div class="Page-Text">
+  申請業務の各種閲覧・管理することが可能です。
+  </div>
+  <div class="DashBoard">
+    <div class="DashBoard-Page-Bt-Area">
+    <%= link_to(request_list_path) do %>
+      <div class="DashBoard-Page-Bt">
+        <div class="DashBoard-Page-Bt-Icon">
+          <span class="material-icons-outlined vw-4">
+          rule
+          </span>
+        </div>  
+        <div class="DashBoard-Page-Bt-Texts">
+          <div class="DashBoard-Page-Bt-Title">
+          各種申請一覧
+          </div>
+          <div class="DashBoard-Page-Bt-Text">
+          各種申請の状況を確認できます
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to("/profile/reqEdit/#{current_user.id}") do %>
+      <div class="DashBoard-Page-Bt">
+        <div class="DashBoard-Page-Bt-Icon">
+          <span class="material-icons-outlined vw-4">
+          rule
+          </span>
+        </div>  
+        <div class="DashBoard-Page-Bt-Texts">
+          <div class="DashBoard-Page-Bt-Title">
+          個人情報変更申請
+          </div>
+          <div class="DashBoard-Page-Bt-Text">
+          個人情報変更申請できます
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to("attendance/reqModify") do %>
+      <div class="DashBoard-Page-Bt">
+        <div class="DashBoard-Page-Bt-Icon">
+          <span class="material-icons-outlined vw-4">
+          rule
+          </span>
+        </div>  
+        <div class="DashBoard-Page-Bt-Texts">
+          <div class="DashBoard-Page-Bt-Title">
+          打刻修正申請
+          </div>
+          <div class="DashBoard-Page-Bt-Text">
+          打刻修正申請できます
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to("events/new_request") do %>
+      <div class="DashBoard-Page-Bt">
+        <div class="DashBoard-Page-Bt-Icon">
+          <span class="material-icons-outlined vw-4">
+          rule
+          </span>
+        </div>  
+        <div class="DashBoard-Page-Bt-Texts">
+          <div class="DashBoard-Page-Bt-Title">
+          イベント作成申請
+          </div>
+          <div class="DashBoard-Page-Bt-Text">
+          イベント作成申請できます
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="Page-Area">
+    <%= link_to(root_path) do %>
+    <div class="Back-Link-Area d-flex align-items-center">
+        <div class="Back-Link-Icon mr-2">
+        <span class="material-icons-outlined">
+        door_back
+        </span>
+        </div>
+        <div class="Back-Link-Text">
+        ホームへ戻る
+        </div>
+    </div>
+    <% end %>
+
+    <h2 class="Page-Title mt-4 mb-3">
+    出席者情報
+    </h2>
+
+    <p class="Page-Text mb-4">
+    出席者情報を確認することが可能です。
+    </p>
+
+    <div class="DashBoard">
+
+        <div class="Dashboard-DoubleGroupContent">
+            <div class="Column-Title">
+            ID
+            </div>
+            <div class="Column-Text">
+            <%= format("%06d", @resultUser.profile.user_id).presence || '---' %>
+            </div>
+            <div class="Column-Line"></div>
+            <div class="Column-Title">
+            氏名
+            </div>
+            <div class="Column-Text">
+            <%= @resultUser.profile.username.presence || '---' %>
+            </div>
+            <div class="Column-Line"></div>
+            <div class="Column-Title">
+            氏名（フリガナ）
+            </div>
+            <div class="Column-Text">
+            <%= @resultUser.profile.ruby.presence || '---' %>
+            </div>
+            <div class="Column-Line"></div>
+            <div class="Column-Title">
+            ニックネーム
+            </div>
+            <div class="Column-Text">
+            <%= @resultUser.profile.nickname.presence || '---' %>
+            </div>
+            <div class="Column-Line"></div>
+            <div class="Column-Title">
+            生年月日
+            </div>
+            <div class="Column-Text">
+            <% if @resultUser.profile.dob.present? %>
+                <%= @resultUser.profile.dob.strftime('%Y-%m-%d') %>（<%= age(@resultUser.profile.dob) %>歳）
+            <% else %>
+                ---
+            <% end %>
+            </div>
+            <div class="Column-Line"></div>
+        </div>
+        <div class="Dashboard-DoubleGroupFrame slim">
+            <%= link_to '出席登録へ戻る', attendance_event_participants_path, class: "btn btn-lg btn-danger btn-block" %>
+        </div>
+    </div>
+</div>

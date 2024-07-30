@@ -1,0 +1,95 @@
+<header class="header">
+    <div class="headerNavOuter">
+        <h1 class="siteIcon">
+          <%= link_to image_tag('Logo.png',  class: 'navbar-brand'), root_path %>
+        </h1>
+        <% if user_signed_in? then %>
+        <nav class="headerNav">
+            <div class="nav-DashBoard-Barcode">
+                <%= image_tag generate_code128B(format("%06d", current_user.id)) %>
+            </div>            
+            <div class="nav-DashBoard-User">
+                <div class="nav-DashBoard-UserPicFrame">
+                    <%= image_tag @myprofile.image.to_s, class: 'nav-DashBoard-UserPic' %>
+                </div>
+                <div class="nav-DashBoard-UserText">
+                    <div class="nav-DashBoard-UserId">
+                    ID:<%= format("%06d", current_user.id).presence || '---' %>		
+                    </div>
+                    <div class="nav-DashBoard-UserName">
+                    <%= @myprofile.username.presence || '---' %>
+                    </div>
+                    <div class="nav-DashBoard-UserName">
+                    (<%= @myprofile.nickname.presence || '---' %>)
+                    </div>
+                </div>
+            </div>            
+            <div class="nav-DashBoard-Club">
+            <div class="nav-DashBoard-Club-Title">
+                所属
+            </div>
+            <div class="nav-DashBoard-ClubText">
+                <div class="nav-DashBoard-ClubPic">
+                <%= image_tag "ClubPic.png"%>
+                </div>
+                <div class="nav-DashBoard-Club-Name">
+                学生委員会"Act"
+                </div>
+            </div>
+            <div class="nav-DashBoard-Line"></div>
+                <div class="nav-DashBoard-Club-Info">
+                日本工学院専門学校（蒲田キャンパス）</br>
+                拠点：10207教室(役員本部)・10203教室
+                </div>
+            </div>
+            <div class="nav-link-menu">
+                <div class="nav-link-menu-Title">
+                    機能
+                </div>
+                <div class="nav-DashBoard-Line"></div>
+                <li class="nav-link-menu-list">
+                <%= link_to '申請管理', request_path, class: 'nav-link' %>
+                </li>
+                <div class="nav-DashBoard-Line-red"></div>
+                <li class="nav-link-menu-list">
+                <%= link_to '人事管理', recruit_path, class: 'nav-link' %>
+                </li>
+                <div class="nav-DashBoard-Line-red"></div>
+                <li class="nav-link-menu-list">
+                <%= link_to '備品管理', equipment_path, class: 'nav-link' %>
+                </li>
+                <div class="nav-DashBoard-Line-red"></div>
+                <li class="nav-link-menu-list">
+                <%= link_to '会計管理', account_path, class: 'nav-link' %>
+                </li>
+                <div class="nav-DashBoard-Line-red"></div>
+                <li class="nav-link-menu-list">
+                <%= link_to 'マスタ管理', master_path, class: 'nav-link' %>
+                </li>
+                <div class="nav-DashBoard-Line-red"></div>
+                <li class="nav-link-menu-list">
+                <%= link_to 'メンバーリスト', profile_list_path, class: 'nav-link' %>
+                </li>
+                <div class="nav-DashBoard-Line-red"></div>
+                <li class="nav-link-menu-list">
+                <%= link_to("マイプロフィール確認", "/profile/info/#{current_user.id}") %>
+                </li>
+                <div class="nav-DashBoard-Line-w"></div>
+            </div>
+
+            <li class="navItem-logout">
+            <%= link_to 'ログアウト', destroy_user_session_path, method: :get, class: 'nav-link' %>
+            </li>
+        </nav>
+    
+        <div class="hamburger_btn" id="js-hamburger">
+            <span class="hamburger_line hamburger_line_1"></span>
+            <span class="hamburger_line hamburger_line_2"></span>
+            <span class="hamburger_line hamburger_line_3"></span>
+        </div>
+
+        <div class="black-bg" id="js-black-bg"></div>
+        <% end %>
+    </div>
+</header>
+<div class="sectionWrapper"></div>

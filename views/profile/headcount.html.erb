@@ -1,0 +1,141 @@
+<div class="Page-Area">
+  <%= link_to(root_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+          door_back
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+        ホームへ戻る
+      </div>
+    </div>
+  <% end %>
+  <%= link_to(recruit_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        undo
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      人事管理へ戻る
+      </div>
+    </div>
+  <% end %>
+
+  <div class="Page-Title">
+    人数統計
+    </div>
+    <div class="Page-Text">
+    所属している会員の分布と人数を確認することが可能です。
+    </div>
+
+
+  <div class="DashBoard DashBoard2">
+    <table class="headCount">
+      <tbody>
+        <tr>
+          <td><span class="material-symbols-outlined icon_people">person</span><span><%= @members_all.count %></span>人</td>
+          <td class="manCount"><span class="material-symbols-outlined icon_people">man</span><span class="percent"><%= @members_sex["男性"].to_i || 0 %></span>人</td>  
+          <td class="womanCount"><span class="material-symbols-outlined icon_people">woman</span><span class="percent"><%= @members_sex["女性"].to_i || 0 %></span>人</td>
+          <td class="sexCount"><span class="material-symbols-outlined icon_people">safety_divider</span><span class="percent">10</span>人</td>
+          <td class="sexCount2" style="display:none"><span class="percent"><%= @members_sex["その他"].to_i || 0 %></span></td>
+          <td>
+          <div class="pie-chart_1">
+            <p>
+              <span class="womanColor">女性</span>
+              <span class="otherColor">その他</span>
+              <span class="manColor">男性</span>
+            </p>
+            <div class="circleGraph">
+            </div>
+          </div>
+          </td>
+          <td><em>入会１年未満</em><span><%= @members_all.where("created_at >= ?", 1.year.ago).count %></span>人</td>
+          <td><em>入会１年以上</em><span><%= @members_all.where("created_at <= ?", 1.year.ago).count %></span>人</td>
+        </tr>
+        <tr>
+          <td class="barGraph">
+            <div class="flex"><b>10代</b><div class="barGrapfWrap"><div class="Tens"></div></div><span class="Tens"><%= @members_all.where("dob >= ? AND dob < ?", Date.today - 20.years, Date.today - 10.years).count %></span></div>
+            <div class="flex"><b>20代</b><div class="barGrapfWrap"><div class="twoTens"></div></div><span class="twoTens"><%= @members_all.where("dob >= ? AND dob < ?", Date.today - 30.years, Date.today - 20.years).count %></span></div>
+            <div class="flex"><b>30代</b><div class="barGrapfWrap"><div class="threeTens"></div></div><span class="threeTens"><%= @members_all.where("dob >= ? AND dob < ?", Date.today - 40.years, Date.today - 30.years).count %></span></div>
+          </td>
+          <td class="barGraph">
+            <div class="flex"><b>2年制</b><div class="barGrapfWrap"><div class="twoSys"></div></div><span class="twoSys"><%= @members_all.joins(:course).where(course: { year: 2 }).count %></span></div>
+            <div class="flex"><b>3年制</b><div class="barGrapfWrap"><div class="threeSys"></div></div><span class="threeSys"><%= @members_all.joins(:course).where(course: { year: 3 }).count %></span></div>
+            <div class="flex"><b>4年制</b><div class="barGrapfWrap"><div class="forSys"></div></div><span class="forSys"><%= @members_all.joins(:course).where(course: { year: 4 }).count %></span></div>
+          </td>
+          <%# TODO: 学年判定ロジック未実装 %>
+          <td class="barGraph">
+            <div class="flex"><b>1年生</b><div class="barGrapfWrap"><div class="firstGrader"></div></div><span class="firstGrader">0</span></div>
+            <div class="flex"><b>2年生</b><div class="barGrapfWrap"><div class="secondGrader"></div></div><span class="secondGrader">0</span></div>
+            <div class="flex"><b>3年生</b><div class="barGrapfWrap"><div class="thardGrader"></div></div><span class="thardGrader">0</span></div>
+            <div class="flex"><b>4年生</b><div class="barGrapfWrap"><div class="forGrader"></div></div><span class="forGrader">0</span></div>
+          </td>
+            <%# TODO: 学年判定ロジック未実装 %>
+            <td><em>卒業期</em><span>0</span>人</td>
+            <td><em>次年度継続予定</em><span>0</span>人</td>
+            <td><em>次年度継続確定</em><span>0</span>人</td>
+            <td><em>今年度集会人数</em><span>0</span>人</td>
+        </tr>
+        <tr>
+            <%# <td></td> %>
+            <td><em class="creatorCollege">クリエイターズカレッジ</em><span><%= @member_statistics.values_at(2, 3, 4, 5, 6).compact.sum || 0 %></span>人</td>
+            <td><em class="itCollege">ITカレッジ</em><span><%= @member_statistics.values_at(15, 26, 17, 18, 19).compact.sum || 0 %></span>人</td>
+            <td><em class="designCollege">デザインカレッジ</em><span><%= @member_statistics.values_at(7, 8, 9, 10).compact.sum || 0 %></span>人</td>
+            <td><em class="musicCollege">ミュージックカレッジ</em><span><%= @member_statistics.values_at(11, 12, 13, 14).compact.sum || 0 %></span>人</td>
+            <td><em class="tecCollege">テクノロジーカレッジ</em><span><%= @member_statistics.values_at(20, 21, 22, 23).compact.sum || 0 %></span>人</td>
+            <td class="collegeGraph">
+              <div class="pie-chart_1">
+                <div class="circleGraph2">
+                </div>
+              </div>
+            </td>
+            <td class="collegeList">
+              <p class="minText"><i class="creatorCollege"></i>クリエイターズ<br>カレッジ</p>
+              <p class="minText"><i class="itCollege"></i>ITカレッジ</p>
+              <p class="minText"><i class="designCollege"></i>デザイン<br>カレッジ</p>
+              <p class="minText"><i class="musicCollege"></i>ミュージック<br>カレッジ</p>
+              <p class="minText"><i class="tecCollege"></i>テクノロジー<br>カレッジ</p>
+            </td>
+        </tr>
+        <%#下記学科%>
+        <tr class="studyList">
+          <td>
+            <span><em>放送芸術科</em><%= @member_statistics[2] || 0 %>人</span>
+            <span><em>IT<br>スペシャリスト科</em><%= @member_statistics[15] || 0 %>人</span>
+            <span><em>ゲーム<br>クリエイター科4年</em><%= @member_statistics[7] || 0 %>人</span>
+            <span><em>ミュージック<br>アーティスト科</em><%= @member_statistics[11] || 0 %></span>
+          </td>            
+          <td>
+            <span><em>マンガ<br>アニメーション科2年科</em><%= @member_statistics[6] || 0 %></span>
+            <span><em>電子・電気科</em><%= @member_statistics[20] || 0 %></span>
+            <span><em>建築学科4年</em><%= @member_statistics[21] || 0 %>人</span>
+            <span><em>情報ビジネス科</em><%= @member_statistics[19] || 0 %>人</span>                                  
+          </td>
+          <td>
+            <span><em>声優・演劇科</em><%= @member_statistics[3] || 0 %>人</span>
+            <span><em>AIシステム科</em><%= @member_statistics[16] || 0 %>人</span>
+            <span><em>ゲーム<br>クリエイター科2年</em><%= @member_statistics[8] || 0 %>人</span>
+            <span><em>コンサート<br>イベント科</em><%= @member_statistics[12] || 0 %>人</span>
+          </td>
+          <td>
+            <span><em>演劇スタッフ科</em><%= @member_statistics[4] || 0 %>人</span>
+            <span><em>情報処理科</em><%= @member_statistics[17] || 0 %>人</span>
+            <span><em>CG映像科</em><%= @member_statistics[9] || 0 %>人</span>
+            <span><em>音響芸術科</em><%= @member_statistics[13] || 0 %>人</span>
+            <span><em>建築設計科</em><%= @member_statistics[22] || 0 %>人</span>              
+          </td>
+          <td>
+            <span><em>マンガ<br>アニメーション科4年</em><%= @member_statistics[5] || 0 %>人</span>
+            <span><em>ネットワーク<br>セキュリティ科</em><%= @member_statistics[18] || 0 %>人</span>
+            <span><em>デザイン科</em><%= @member_statistics[10] || 0 %>人</span>
+            <span><em>ダンス<br>パフォーマンス科</em><%= @member_statistics[14] || 0 %>人</span>
+            <span><em>機械設計科</em><%= @member_statistics[23] || 0 %>人</span>          
+          </td>
+        </tr> 
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,135 @@
+<div class="Page-Area">
+    <%= link_to(equipment_list_path) do %>
+      <div class="Back-Link-Area">
+        <div class="Back-Link-Icon">
+          <span class="material-icons-outlined">
+          undo
+          </span>
+        </div>
+        <div class="Back-Link-Text">
+        備品（品目）一覧へ戻る
+        </div>
+      </div>
+    <% end %>
+    <div class="Page-Title">
+    備品（品目）詳細情報
+    </div>
+    <div class="Page-Text">
+    備品（品目）の詳細を確認・編集することが可能です。
+    </div>
+    <div class="Dashboard-DoubleGroup">
+        <div class="Dashboard-DoubleGroupFrame">
+            <div class="Dashboard-DoubleGroupContent"> 
+                <%# <%= image_tag @equipment.image_url, class: 'Profile-Pic'%> %>
+                <div class="Column-Title">
+                品目ID
+                </div>
+                <div class="Column-Text">
+                <%= format("%04d", @equipment.id).presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                品目名
+                </div>
+                <div class="Column-Text">
+                <%= @equipment.name.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                数量
+                </div>
+                <div class="Column-Text">
+                <%= @equipmentItem.count.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+            </div>
+            <div class="Dashboard-DoubleGroupContent">
+                <div class="Dashboard-More-Title">
+                品目管理
+                </div>
+                <div class="Action-bt-Area">
+                    <%= link_to("タックシール発行", "/print/equipmentLabel/#{@equipment.id}/#{@equipmentItemIDs}") %>
+                </div>
+            </div>
+        </div>
+        <div class="Dashboard-DoubleGroupFrame">
+            <div class="Dashboard-DoubleGroupContent">
+                <div class="Dashboard-More-Title">
+                詳細情報
+                </div>
+                <div class="Dashboard-MoreArea">
+                <div class="Dashboard-MoreSubTitle">
+                基本情報
+                </div>
+                <div class="Column-Title">
+                品目ID
+                </div>
+                <div class="Column-Text">
+                <%= format("%04d", @equipment.id).presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                品目名
+                </div>
+                <div class="Column-Text">
+                <%= @equipment.name.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>
+                <div class="Column-Title">
+                数量
+                </div>
+                <div class="Column-Text">
+                <%= @equipmentItem.count.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>        
+                <div class="Column-Title">
+                高さ（単位：cm）
+                </div>
+                <div class="Column-Text">
+                <%= formatArray(@equipment.size,0).presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>          
+                <div class="Column-Title">
+                幅（単位：cm）
+                </div>
+                <div class="Column-Text">
+                <%= formatArray(@equipment.size,1).presence || '---' %>
+                </div>
+                <div class="Column-Line"></div> 
+                <div class="Column-Title">
+                奥行き（単位：cm）
+                </div>
+                <div class="Column-Text">
+                <%= formatArray(@equipment.size,2).presence || '---' %>
+                </div>
+                <div class="Column-Line"></div> 
+                <div class="Column-Title">
+                備考
+                </div>
+                <div class="Column-Text">
+                <%= @equipment.remark.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div>        
+                <div class="Column-Title">
+                カテゴリ
+                </div>
+                <div class="Column-Text">
+                <%= @equipment.category.presence || '---' %>
+                </div>
+                <div class="Column-Line"></div> 
+                </div>      
+                <div class="Dashboard-MoreArea">         
+                <div class="Dashboard-MoreSubTitle">
+                子棚一覧
+                </div>
+                <% @equipmentItem.each do |item| %>
+                <div class="Column-Text">
+                <%= "#{format("%04d", item.shelf_id)} - #{format("%04d", item.id)}（保管：#{shelf(item.shelf_id).room} - #{shelf(item.shelf_id).remark}）" %>
+                </div>
+                <div class="Column-Line"></div>
+                <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

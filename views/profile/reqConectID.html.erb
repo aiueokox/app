@@ -1,0 +1,37 @@
+<div class="Page-Area">
+  <%= link_to("/profile/info/#{@user.id}") do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        undo
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      プロフィールへ戻る
+      </div>
+    </div>
+  <% end %>
+  <div class="Page-Title">
+  アカウント連携ID変更リクエスト
+  </div>
+  <div class="Page-Text">
+  サークル活動支援サービス「ACTION」ユーザーアカウントに紐つくGoogleアカウントを更新いたします。<br>
+  連携するIDはGoogleアカウントのメールアドレスである必要があります。
+  </div>
+  <div class="Dashboard-DoubleGroup-w">
+    <div class="Dashboard-Contents">
+    <%= form_with(model: @profile, url: {controller: 'profile', action: 'newReqConectID'}) do |f| %>
+    <%= f.hidden_field :id,:value =>@user.id %>
+      <div class="form-group">
+        <%= f.label "連携ID（Googleアカウント）" %>
+          <%= f.email_field :email, required: true, class: 'form-control'%>
+      </div>
+      <div class="form-group">  
+        <%= f.submit('申請', {class: 'btn-action'}) %>
+      </div>
+    <% end %>
+
+
+    </div>
+  </div>
+</div>

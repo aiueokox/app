@@ -1,0 +1,67 @@
+<div class="Page-Area">
+  <%= link_to(recruit_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        undo
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      人事管理へ戻る
+      </div>
+    </div>
+  <% end %>
+    <div class="Page-Title">
+    イベント作成
+    </div>
+    <div class="Page-Text">
+    新たなイベントを作成することが可能です。
+    </div>
+    <div class="DashBoard">
+
+
+        <% if @event.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+            <strong><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</strong>
+            <ul class="list-group mt-2">
+            <% @event.errors.full_messages.each do |message| %>
+                <li class="list-group-item list-group-item-danger"><%= message %></li>
+            <% end %>
+            </ul>
+        </div>
+        <% end %>
+
+        <%= form_with model: @event, local: true do |f| %>
+            <div class="form-group">
+                <div class="form-title">
+                    イベントタイトル
+                </div>
+                <%= f.text_field :title,  class: 'form-control', required: 'true' %>
+            </div>
+            <div class="form-group">
+                <div class="form-title">
+                    イベント概要
+                </div>
+                <%= f.text_area :description, class: 'form-control', required: 'true' %>
+            </div>
+
+            <div class="form-group">
+                <div class="form-title">
+                    イベント開始日時
+                </div>
+                <%= f.datetime_field :start_date_time, class: 'form-control', required: 'true' %>
+            </div>
+
+            <div class="form-group">
+                <div class="form-title">
+                    イベント終了日時
+                </div>
+                <%= f.datetime_field :end_date_time, class: 'form-control', required: 'true' %>
+            </div>
+
+            <div class="form-group">  
+                <%= f.submit('参加者選択へ進む', {class: 'btn-action'}) %>
+            </div>
+        <% end %>
+    </div>
+</div>

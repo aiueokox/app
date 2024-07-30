@@ -1,0 +1,43 @@
+<div class="Page-Area">
+    <%= link_to(root_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        door_back
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      ホームへ戻る
+      </div>
+    </div>
+    <% end %>
+  <div class="Page-Title">
+  権限グループを付与する
+  </div>
+  <div class="Page-Text">
+  権限グループをユーザーに付与することができます。<br>
+  最小権限の原則を基にグループの付与を行なってください。
+  </div>
+  <div class="Dashboard-DoubleGroup-w">
+    <div class="Dashboard-Contents">
+        <%= form_with(model: @role, url: {controller: 'role', action: 'grant'}) do |f| %>
+
+        <%= f.hidden_field :id,:value =>@grantUser.id %>
+
+        <div class="form-group">
+          <%= f.label "付与権限" %>
+          <%= f.collection_select :role_id, Role.joins(:department).select("roles.*, departments.*").where(department_id: @grantProfile.department_id).or(Role.where(department_id: 1)), :code, :code, :prompt => "権限ID付与グループを選択", class: 'form-control' %>
+        </div>
+
+      <div class="form-group">
+        <%= f.submit "Sign up", class: 'Submit-btn' %>
+      </div>
+    <% end %>
+
+    </div>
+    <div class="Dashboard-Contents">
+
+
+    </div>
+  </div>
+</div>

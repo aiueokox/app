@@ -1,0 +1,55 @@
+<div class="Page-Area">
+    <%= link_to(root_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        door_back
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      ホームへ戻る
+      </div>
+    </div>
+    <% end %>
+  <div class="Page-Title">
+  学科を作成
+  </div>
+  <div class="Page-Text">
+  学科を作成することができます。
+  </div>
+  <div class="Dashboard-DoubleGroup-w">
+    <div class="Dashboard-Contents">
+        <%= form_with(model: @course, url: {controller: 'course', action: 'new'}) do |f| %>
+
+        <div class="form-group">
+          <%= f.label "カレッジ" %>
+          <%= f.collection_select :college_id, College.all, :id, :name, :prompt => "カレッジを選択", class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "学科名" %>
+           <%= f.text_field :name, required: true, class: 'form-control'%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "学科記号" %>
+           <%= f.text_field :symbol, required: true, class: 'form-control'%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "就学年" %>
+           <%= f.text_field :year, required: true, class: 'form-control'%>
+        </div>
+
+      <div class="form-group">
+        <%= f.submit "Sign up", class: 'Submit-btn' %>
+      </div>
+    <% end %>
+
+    </div>
+    <div class="Dashboard-Contents">
+
+
+    </div>
+  </div>
+</div>

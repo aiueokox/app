@@ -1,0 +1,216 @@
+<div class="Top-Page-Area">
+<div class="DashBoard-Top-Group">
+<% if @events.present? %>
+  <% @events.each do |event| %>
+    <div class="DashBoard-Top-Title">
+    <span class="material-icons-outlined vw-2">
+    event
+    </span>
+    <%= "#{event.start_date_time.strftime('%H時%M分')}「#{event.title}」" %>
+    </div>
+    <% @qr = ::RQRCode::QRCode.new("#{current_user.id},#{event.id}",  level: :h) %>
+    <%= image_tag ChunkyPNG::Image.from_datastream(@qr.as_png.to_datastream).resize(700, 700).to_data_url , class: 'Qr-Pic'%> 
+  <% end %>
+<% else %>
+  <div class="DashBoard-Top-Title">
+  <span class="material-icons-outlined vw-2">
+  event
+  </span>
+  予定イベントは直近でありません
+  </div>
+<% end %>
+<div class="DashBoard-Top-Title">
+<span class="material-icons-outlined vw-2">
+notifications_active
+</span>
+各種状況を確認
+</div>
+<div class="DashBoard-Status">
+<% if Time.now.hour < 21 and @borrow_key.present? %>
+<%= link_to(root_path, {class: "none"}) do %>
+<div class="DashBoard-Status-Contents true">
+<div class="DashBoard-Status-Content-icon">
+<span class="material-icons-outlined vw-48">
+lock
+</span>
+</div>
+<div class="DashBoard-Status-Content-text">
+学生委員会 Act　部室カギ
+<div class="DashBoard-Status-Content-text bold">
+貸出済
+</div>
+<%= @borrow_key.created_at.strftime('%Y/%m/%d %H:%M:%S') %>更新
+</div>
+</div>
+<% end %>
+<% else %>
+<%= link_to(root_path, {class: "none"}) do %>
+  <div class="DashBoard-Status-Contents false">
+  <div class="DashBoard-Status-Content-icon">
+  <span class="material-icons-outlined vw-48">
+  lock
+  </span>
+  </div>
+  <div class="DashBoard-Status-Content-text">
+  学生委員会 Act　部室カギ
+  <div class="DashBoard-Status-Content-text bold">
+  未貸出
+  </div>
+  <%= Time.now.strftime('%Y/%m/%d %H:%M:%S') %>更新
+  </div>
+  </div>
+  <% end %>
+  <% end %>
+<div class="DashBoard-Status-Content-line">
+</div>
+<% if @Activities.count > 0 %>
+<%= link_to(attendance_list_path, {class: "none"}) do %>
+<div class="DashBoard-Status-Contents true">
+  <div class="DashBoard-Status-Content-icon">
+    <span class="material-icons-outlined vw-48">
+    groups
+    </span>
+  </div>
+  <div class="DashBoard-Status-Content-text">
+  現在の活動状況
+    <div class="DashBoard-Status-Content-text bold">
+    <%= @Activities.count %>人
+    </div>
+  活動しています
+  </div>
+</div>
+<% end %>
+<% else %>
+<%= link_to(attendance_log_path, {class: "none"}) do %>
+<div class="DashBoard-Status-Contents false">
+  <div class="DashBoard-Status-Content-icon">
+    <span class="material-icons-outlined vw-48">
+    groups
+    </span>
+  </div>
+  <div class="DashBoard-Status-Content-text">
+  現在の活動状況
+    <div class="DashBoard-Status-Content-text bold">
+    <%= @Activities.count %>人
+    </div>
+  活動していません
+  </div>
+</div>
+<% end %>
+<% end %>
+</div>
+<div class="DashBoard-Top-Title sec">
+<span class="material-icons-outlined vw-2">
+description
+</span>
+</span>
+申請の状況
+</div>
+<div class="DashBoard-Requests">
+<table class="table">
+        <tr>
+          <td style="width: 30%;font-size: 14px;font-weight: bold">最新の5件</td>
+          <td style="width: 70%"></td>
+        </tr>
+        <% @myRequests.each do |myRequest| %>
+          <% if myRequest.status == "success" %>
+          <tr>
+            <td><span class="badge badge-success">完了</span></td>
+            <td><%= link_to(myRequest.title, "/request/info/#{myRequest.id}") %></td>
+          </tr>
+          <% elsif myRequest.status == "danger"%>
+          <tr>
+            <td><span class="badge badge-danger">否認</span></td>
+            <td><%= link_to(myRequest.title, "/request/info/#{myRequest.id}") %></td>
+          </tr>
+          <% else %>
+          <tr>
+            <td><span class="badge badge-info">承認待ち</span></td>
+            <td><%= link_to(myRequest.title, "/request/info/#{myRequest.id}") %></td>
+          </tr>
+          <%end%>
+        <% end %>
+      </table>
+</div>
+<% unless @Requests.nil? %>
+  <div class="DashBoard-Top-Title sec">
+    <span class="material-icons-outlined vw-2">
+    checklist
+    </span>
+  </span>
+  申請の管理
+  </div>
+  <div class="DashBoard-Requests">
+    <table class="table">
+      <tr>
+        <td style="width: 30%;font-size: 14px;font-weight: bold">最新の5件</td>
+        <td style="width: 40%"></td>
+        <td style="width: 30%"></td>
+      </tr>
+      <% @Requests.each do |request| %>
+        <% if request.status == "success" %>
+          <tr>
+            <td><span class="badge badge-success">完了</span></td>
+            <td><%= link_to(request.title, "/request/info/#{request.id}") %></td>
+            <td><%= link_to("申請者：#{getProfileByUserID(request.user_id).username}", "/profile/info/#{request.user_id}") %></td>
+          </tr>
+          <% elsif request.status == "danger"%>
+          <tr>
+            <td><span class="badge badge-danger">否認</span></td>
+            <td><%= link_to(request.title, "/request/info/#{request.id}") %></td>
+            <td><%= link_to("申請者：#{getProfileByUserID(request.user_id).username}", "/profile/info/#{request.user_id}") %></td>
+          </tr>
+          <% else %>
+          <tr>
+            <td><span class="badge badge-info">承認待ち</span></td>
+            <td><%= link_to(request.title, "/request/info/#{request.id}") %></td>
+            <td><%= link_to("申請者：#{getProfileByUserID(request.user_id).username}", "/profile/info/#{request.user_id}") %></td>
+          </tr>
+          <%end%>       
+      <% end %>
+    </table>
+  </div>
+<% end %>
+</div>
+<div class="SideBoard-Top-Group">
+<div class="Top-link-menu">
+    <div class="Top-link-menu-Title">
+        機能
+    </div>
+    <div class="Top-DashBoard-Line-w"></div>
+    <li class="Top-link-menu-list">
+    <%= link_to '申請管理', request_path, class: 'nav-link' %>
+    </li>
+    <div class="Top-DashBoard-Line-brack"></div>
+    <li class="Top-link-menu-list">
+    <%= link_to '人事管理', recruit_path, class: 'nav-link' %>
+    </li>
+    <div class="Top-DashBoard-Line-brack"></div>
+    <li class="Top-link-menu-list">
+    <%= link_to '備品管理', equipment_path, class: 'nav-link' %>
+    </li>
+    <div class="Top-DashBoard-Line-brack"></div>
+    <li class="Top-link-menu-list">
+    <%= link_to '会計管理', account_path, class: 'nav-link' %>
+    </li>
+    <div class="Top-DashBoard-Line-brack"></div>
+    <li class="Top-link-menu-list">
+    <%= link_to 'マスタ管理', master_path, class: 'nav-link' %>
+    </li>
+    <div class="Top-DashBoard-Line-w"></div>
+</div>
+<div class="Top-GroupInfo">
+  <div class="Top-GroupInfo-Title">
+  団体
+  </div>
+  <div class="Top-GroupInfo-Name">
+  学生委員会Act
+  </div>
+  <div class="Top-GroupInfo-Text">
+  日本工学院専門学校（蒲田キャンパス）<br>
+  拠点：10203教室（活動用）・10207教室（役員本部）<br>
+  顧問：森宮 乾（教育学生支援部 内 カレッジ教務）<br>
+  <%= "学生代表：#{@president.username}（#{getCourseInfoByCourseID(@president.course_id)[0]}カレッジ #{getCourseInfoByCourseID(@president.course_id)[1]}）" %>
+  </div>
+</div>
+</div>

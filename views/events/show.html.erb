@@ -1,0 +1,84 @@
+<div class="Page-Area">
+  <%= link_to(events_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        undo
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      イベント一覧へ戻る
+      </div>
+    </div>
+  <% end %>
+
+  <div class="Page-Title">
+    <%= @event.title %>
+  </div>
+
+  <div class="DashBoard">
+    <p class="Event-Description">イベント概要：</p>
+    <p class="Event-Description"><%= @event.description %></p>
+    <div class="Event-Time">
+      <p>開始: <%= @event.start_date_time.strftime('%Y-%m-%d %H:%M') %></p>
+      <p>終了: <%= @event.end_date_time.strftime('%Y-%m-%d %H:%M') %></p>
+    </div>
+    <% 
+        total_participants = @event.event_participants.count
+        male_participants = @event.event_participants.select { |p| p.user.profile.sex == '男性' }.count
+        female_participants = total_participants - male_participants
+        attended_participants = @event.event_participants.select { |p| p.attendance_status.to_sym == :attended }.count
+        unattended_participants = total_participants - attended_participants
+    %>
+    <div class="Event-Statistics">
+      <h3>集計結果</h3>
+      <p>総参加者数: <%= total_participants %> 人</p>
+      <p>男性: <%= male_participants %> 人</p>
+      <p>女性: <%= female_participants %> 人</p>
+      <p>出席済み: <%= attended_participants %> 人</p>
+      <p>未出席: <%= unattended_participants %> 人</p>
+    </div>
+    <div class="Participant-List">
+      <h3>参加者一覧</h3>
+      <table class="table">
+        <thead>
+            <tr>
+                <th>出席状況</th>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>Ruby</th>
+                <th>Nickname</th>
+                <th>Sex</th>
+                <th>Student Num</th>
+                <th>Course Name</th>
+                <th>Department</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @event.event_participants.each do |participant| %>
+            <tr>
+                <td>
+                    <% case participant.attendance_status.to_sym %>
+                    <% when :unattended %>
+                        <span class="badge bg-warning">未出席</span>
+                    <% when :attended %>
+                        <span class="badge bg-success">出席済み</span>
+                    <% when :absent %>
+                        <span class="badge bg-danger">欠席</span>
+                    <% end %>
+                </td>
+                <td><%= format("%06d", participant.user.id) %></td>
+                <td><%= participant.user.profile.username %></td>
+                <td><%= participant.user.profile.ruby %></td>
+                <td><%= participant.user.profile.nickname %></td>
+                <td><%= participant.user.profile.sex %></td>
+                <td><%= participant.user.profile.student_num %></td>
+                <td><%= participant.user.profile.course.name %></td>
+                <td><%= participant.user.profile.department.department %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

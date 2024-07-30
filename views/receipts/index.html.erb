@@ -1,0 +1,44 @@
+<div class="Page-Area">
+  <%= link_to(account_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        undo
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      会計管理へ戻る
+      </div>
+    </div>
+  <% end %>
+    <div class="Page-Title">
+    領収書一覧
+    </div>
+    <div class="Page-Text">
+    請求が確定している領収書の一覧を確認できます。
+    </div>
+
+    <div class="DashBoard">
+      <table class="table">
+        <tr>
+            <td>請求番号</td>
+            <td>品目</td>
+            <td>請求日</td>
+            <td>請求金額</td>
+            <td></td>
+
+        </tr>
+        <% @receipts.each do |receipt| %>
+          <tr>
+            <div class="list-item">
+                <td><%= receipt.billing_date.strftime('%Y-%m-%d') %>-01-<%= format("%04d", receipt.id) %></td>
+                <td><%= receipt.description.presence || '---' %></td>
+                <td><%= receipt.billing_date.strftime('%Y年%m月%d日') %></td>
+                <td><%= number_with_delimiter((receipt.subtotal * (1 + (receipt.tax_rate.to_f / 100))).round, delimiter: ',') %>円</td>
+                <td><%= link_to("印刷", "/print/receipt/#{receipt.id}",class:"btn btn-outline-primary") %></td>
+            </div>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+</div>

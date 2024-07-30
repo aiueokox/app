@@ -1,0 +1,173 @@
+<div class="Page-Area">
+  <%= link_to(root_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+          door_back
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+        ホームへ戻る
+      </div>
+    </div>
+  <% end %>
+  <%= link_to(recruit_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        undo
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      人事管理へ戻る
+      </div>
+    </div>
+  <% end %>
+
+  <div class="Page-Title">
+    人数統計
+    </div>
+    <div class="Page-Text">
+    所属している会員の分布と人数を確認することが可能です。
+    </div>
+
+
+  <div class="DashBoard">
+    <table class="table table-striped">
+
+        <tr>
+        
+            <%# <td></td> %>
+            <td><b>総会員数</td>
+            <td></td>
+            <td>男性</td>
+            <td>女性</td>
+            <td>その他</td>
+        </tr>
+        <div class="list-item">
+        <tr>
+          <td><%= @members_all.count %>人</td>
+          <td></td>
+          <td><%= @members_sex["男性"].to_i || 0 %>人</td>  
+          <td><%= @members_sex["女性"].to_i || 0 %>人</td>
+          <td><%= @members_sex["その他"].to_i || 0%>人</td>
+          
+        </tr>
+        <tr>
+            <%# <td></td> %>
+            <td><b>クリエイターズカレッジ</td>
+            <td><b>ITカレッジ</td>
+            <td><b>デザインカレッジ</td>
+            <td><b>ミュージックカレッジ</td>
+            <td><b>テクノロジーカレッジ</td>
+        </tr>
+        <tr>
+            
+            <div class="list-item">
+            
+            <td><%=@member_statistics.select { |course_id, _| (2..6).cover?(course_id) }.values.sum || 0 %>人</td>
+            <td><%=@member_statistics.select { |course_id, _| (15..19).cover?(course_id) }.values.sum || 0 %>人</td>
+            <td><%=@member_statistics.select { |course_id, _| (7..10).cover?(course_id) }.values.sum || 0 %>人</td>
+            <td><%=@member_statistics.select { |course_id, _| (11..14).cover?(course_id) }.values.sum || 0 %>人</td>
+            <td><%=@member_statistics.select { |course_id, _| (20..23).cover?(course_id) }.values.sum || 0 %>人</td>
+            </div>
+          </tr>
+
+        <%#下記学科%>
+        <tr>
+            <%# <td></td> %>
+            <td>放送芸術科</td>
+            <td>ITスペシャリスト科</td>
+            <td>ゲームクリエイター科4年</td>
+            <td>ミュージックアーティスト科</td>
+            <td>電子・電気科</td>   
+        </tr>
+        <tr>
+            <div class="list-item">
+            
+            <td><%= @member_statistics[2] || 0 %>人</td>
+            <td><%= @member_statistics[15] || 0 %>人</td>
+            <td><%= @member_statistics[7] || 0 %>人</td>
+            <td><%= @member_statistics[11] || 0 %>人</td>
+            <td><%= @member_statistics[20] || 0 %>人</td>
+            </div>
+          </tr>
+        <tr>
+            <%# <td></td> %>
+            <td>声優・演劇科</td>
+            <td>AIシステム科</td>
+            <td>ゲームクリエイター科2年</td>
+            <td>コンサート・イベント科</td>
+            <td>建築学科4年</td>
+        </tr>
+        <tr>
+            
+            <div class="list-item">
+            
+            <td><%= @member_statistics[3] || 0 %>人</td>
+            <td><%= @member_statistics[16] || 0 %>人</td>
+            <td><%= @member_statistics[8] || 0 %>人</td>
+            <td><%= @member_statistics[12] || 0 %>人</td>
+            <td><%= @member_statistics[21] || 0 %>人</td>
+            </div>
+          </tr>
+        
+        <tr>
+            <%# <td></td> %>
+            <td>演劇スタッフ科</td>
+            <td>情報処理科</td>
+            <td>CG映像科</td>
+            <td>音響芸術科</td>
+            <td>建築設計科</td>
+        </tr>
+        
+        <tr>
+            
+            <div class="list-item">
+            
+            <td><%= @member_statistics[4] || 0 %>人</td>
+            <td><%= @member_statistics[17] || 0 %>人</td>
+            <td><%= @member_statistics[9] || 0 %>人</td>
+            <td><%= @member_statistics[13] || 0 %>人</td>
+            <td><%= @member_statistics[22] || 0 %>人</td>
+            </div>
+          </tr>
+
+        <tr>
+            <%# <td></td> %>
+            <td>漫画アニメーション科4年</td>
+            <td>ネットワーク・セキュリティ科</td>
+            <td>デザイン科</td>
+            <td>ダンスパフォーマンス科</td>
+            <td>機械設計科</td>
+            
+        </tr>
+        <tr>
+            
+            <div class="list-item">
+            
+            <td><%= @member_statistics[5] || 0 %>人</td>
+            <td><%= @member_statistics[18] || 0 %>人</td>
+            <td><%= @member_statistics[10] || 0 %>人</td>
+            <td><%= @member_statistics[14] || 0 %>人</td>
+            <td><%= @member_statistics[23] || 0 %>人</td>
+            </div>
+          </tr>
+        <tr>
+            <%# <td></td> %>
+            <td>漫画アニメーション科2年</td>
+            <td>情報ビジネス科</td>
+            
+        </tr>
+        <tr>
+            
+            <div class="list-item">
+            
+            <td><%= @member_statistics[6] || 0 %>人</td>
+            <td><%= @member_statistics[19] || 0 %>人</td>
+            
+            </div>
+          </tr>
+        <%#ここまで%>
+</div>
+</div>

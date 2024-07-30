@@ -1,0 +1,2 @@
+module EquipmentItemHelper
+end

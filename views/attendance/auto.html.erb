@@ -1,0 +1,39 @@
+<script>
+    function twoDigit(num) {
+        let ret;
+        if (num < 10)
+            ret = "0" + num;
+        else
+            ret = num;
+        return ret;
+    }
+    function showClock() {
+        let nowTime = new Date();
+        let nowHour = twoDigit(nowTime.getHours());
+        let nowMin = twoDigit(nowTime.getMinutes());
+        let nowSec = twoDigit(nowTime.getSeconds());
+        let msg = nowHour + ":" + nowMin + ":" + nowSec;
+        document.getElementById("realtime").innerHTML = msg;
+    }
+    setInterval('showClock()', 1000);
+
+</script>
+
+<body onload="document.getElementById('form-control').focus(); LoadProc();" style="background-color:#2d2d2d;">
+	<div class="date">
+        <%= @date %>
+	</div>
+	<div class="time">
+		<a id="realtime"><%= @time.strftime("%H:%M:%S") %></a>
+	</div>
+	<div class="cate">
+		Process：
+	</div>
+	<div class="cate-text-A">
+		自動判別
+	</div>
+    <%= form_with(model: @attendances, url: {controller: 'attendance', action: 'success'}) do |f| %>
+		<%= f.text_field :user_id, required: true, autofocus: true, placeholder: "" %>
+    <% end %>
+	
+</body>

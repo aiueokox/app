@@ -1,0 +1,117 @@
+<div class="Page-Area">
+  <div class="Page-Title">
+  アカウントを作成
+  </div>
+  <div class="Page-Text">
+  サークル活動支援サービス「ACTION」ユーザーアカウントを作成いたします。<br>
+  以下、フォームをすべてご入力の上お進みください。
+  </div>
+  <div class="Dashboard-DoubleGroup-w">
+    <div class="Dashboard-Contents">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= bootstrap_devise_error_messages! %>
+
+        <div class="field">
+          <%= f.hidden_field :password, autocomplete: "new-password",:value =>"1qaz2wsx3edc4rfv" %>
+        </div>
+
+        <div class="field">
+          <%= f.hidden_field :password_confirmation, autocomplete: "new-password",:value =>"1qaz2wsx3edc4rfv" %>
+        </div>
+
+        <div class="field">
+          <%= f.hidden_field :email,:value =>"qazwsxedcrftgbyhjnuj@sdf.ad" %>
+        </div>
+
+
+        <%= f.fields_for :profile do |f| %>
+
+
+        <div class="form-group">
+          <%= f.label "氏名" %>
+          <%= f.text_field :username, placeholder: '例）蒲田 太郎', required: true, autocomplete: 'name', class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "フリガナ" %>
+          <%= f.text_field :ruby, placeholder: '例）カマタ タロウ', required: true, autocomplete: 'ruby', class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "ローマ字（姓）" %>
+          <%= f.text_field :last_name, placeholder: '例）kamata', required: true, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "ローマ字（名）" %>
+          <%= f.text_field :first_name, placeholder: '例）taro', required: true, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "ニックネーム" %>
+          <%= f.text_field :nickname, placeholder: '例）かま太郎', required: true,class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "性別" %>
+          <%= f.select :sex, options_for_select([['男性', '男性'],['女性', '女性'], ['その他', 'その他']]), {:prompt => '性別を選択してください'}, required: true, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "生年月日" %>
+          <%= f.date_field :dob, required: true, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "電話番号" %>
+          <%= f.text_field :phone, placeholder: '例）08012345678', required: true, autocomplete: 'phone', class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "学籍番号" %>
+          <%= f.text_field :student_num, placeholder: '例）K012C3456', required: true, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "所属学科" %><br />
+          <%= f.collection_select :course_id, Course.where('id != 1'), :id, :name, {:prompt => "学科を選択してください"}, required: true, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "担任教員名（敬称略）" %>
+          <%= f.text_field :teacher_name, placeholder: '例）八王子 一郎', required: true, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "通学状況" %><br />
+          <%= f.select :commute, options_for_select([['実家', '実家'], ['ひとり暮らし', 'ひとり暮らし'], ['京浜寮', '京浜寮'], ['城南寮', '城南寮'], ['蒲田寮', '蒲田寮'], ['多摩川寮', '多摩川寮'], ['その他', 'その他']]), {:prompt => '通学形態を選択してください'}, required: true, class: 'form-control'  %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "保護者氏名" %>
+          <%= f.text_field :parent_name, placeholder: '例）蒲田 凪子', required: true, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "保護者電話番号" %>
+          <%= f.text_field :parent_phone, placeholder: '例）09087654321', required: true, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "保護者住所" %>
+          <%= f.text_field :parent_address,placeholder: '例）東京都大田区西蒲田5-23-22 1号館クラブハウス棟10403教室', required: true, class: 'form-control' %>
+        </div>
+
+      <% end %>
+
+      <div class="form-group">
+        <%= f.submit "Sign up", class: 'Submit-btn' %>
+      </div>
+    <% end %>
+
+    </div>
+    <div class="Dashboard-Contents">
+
+    </div>
+  </div>
+</div>

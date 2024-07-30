@@ -1,0 +1,2 @@
+module DepertmentHelper
+end

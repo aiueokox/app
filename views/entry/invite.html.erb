@@ -1,0 +1,94 @@
+<div class="Page-Area">
+  <%= link_to :back do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        undo
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      戻る
+      </div>
+    </div>
+  <% end %>
+    <div class="Page-Title">
+    会員を招待します
+    </div>
+    <div class="Page-Text">
+    会員を追加する場合は、以下情報を提供してください
+    </div>
+    <div class="DashBoard">
+        <div class="Dashboard-DoubleGroup">
+            <div class="Dashboard-DoubleGroupFrame slim">
+                <% @qr = ::RQRCode::QRCode.new("#{request.protocol}/#{request.host}/users/sign_up",  level: :h) %>
+                <%= image_tag ChunkyPNG::Image.from_datastream(@qr.as_png.to_datastream).resize(700, 700).to_data_url , class: 'Qr-Pic'%> 
+            </div>
+            <div class="Dashboard-DoubleGroupFrame slim">
+                <div class="DashBoard">
+                    <div class="Dashboard-MoreSubTitle">
+                        入会手順
+                    </div>
+                    <div class="Column-Title">
+                    STEP 1
+                    </div>
+                    <div class="Column-Text">
+                    QRコードをお手持ちのスマートホンで読み込んで専用ページへアクセスしてください
+                    </div>
+                    <div class="Column-Line"></div>
+                    <div class="Column-Title">
+                    STEP 2
+                    </div>
+                    <div class="Column-Text">
+                    招待コード「<%=@inviteCode%>」を入力してください
+                    </div>
+                    <div class="Column-Line"></div>
+                    <div class="Column-Title">
+                    STEP 3
+                    </div>
+                    <div class="Column-Text">
+                    会則・利用規約をよく読んで次へお進みください
+                    </div>
+                    <div class="Column-Line"></div>
+                    <div class="Column-Title">
+                    STEP 4
+                    </div>
+                    <div class="Column-Text">
+                    必要情報を全て入力してください
+                    </div>
+                    <div class="Column-Line"></div>
+                    <div class="Column-Title">
+                    STEP 5
+                    </div>
+                    <div class="Column-Text">
+                    QRコードが表示されたらスタッフの指示に従って手続きを進めてください
+                    </div>
+                    <div class="Column-Line"></div>
+                    <div class="Column-Title">
+                    Complete！
+                    </div>
+                    <div class="Column-Text">
+                    以上で手続きは完了です。
+                    </div>
+                    <div class="Column-Line"></div>
+                </div>
+                <div class="DashBoard">
+                    <div class="Dashboard-MoreSubTitle">
+                        招待コード
+                    </div> 
+                    <div class="PickUpText red">
+                        <%=@inviteCode%>
+                    </div> 
+                </div>
+                <div class="DashBoard">
+                    <div class="Dashboard-MoreSubTitle">
+                        招待期限
+                    </div> 
+                    <div class="PickUpText">
+                        <%="#{@checkTime.strftime('%Y/%m/%d %H:%M')}"%>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

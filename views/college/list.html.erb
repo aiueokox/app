@@ -1,0 +1,38 @@
+<div class="Page-Area">
+  <%= link_to(root_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        door_back
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      ホームへ戻る
+      </div>
+    </div>
+  <% end %>
+    <div class="Page-Title">
+    カレッジのリスト
+    </div>
+    <div class="Page-Text">
+    カレッジを一覧で確認することが可能です。
+    </div>
+    <div class="DashBoard">
+      <table class="table">
+        <tr>
+            <td>カレッジID</td>
+            <td>カレッジ名</td>
+            <td>識別コード</td>
+        </tr>
+        <% @Colleges.each do | college | %>
+          <tr>
+            <div class="list-item">
+            <td><%= college.id %></td>
+            <td><%= college.name %></td>
+            <td><%= college.flag %></td>
+            </div>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+</div>

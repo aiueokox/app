@@ -1,0 +1,38 @@
+<div class="Page-Area">
+  <%= link_to(root_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        door_back
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      ホームへ戻る
+      </div>
+    </div>
+  <% end %>
+    <div class="Page-Title">
+    権限グループのリスト
+    </div>
+    <div class="Page-Text">
+    権限グループを一覧で確認することが可能です。
+    </div>
+    <div class="DashBoard">
+      <table class="table">
+        <tr>
+            <td>権限ID</td>
+            <td>部署名</td>
+            <td>役職名</td>
+        </tr>
+        <% @roles.each do | role | %>
+          <tr>
+            <div class="list-item">
+            <td><%= role.code %></td>
+            <td><%= role.department.department %></td>
+            <td><%= role.department.position %></td>
+            </div>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+</div>

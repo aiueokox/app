@@ -1,0 +1,26 @@
+<div class="Page-Area">
+    <div class="Sign-In-Page-Logo">
+    <%= image_tag 'LogoR.png', alt: "logo" %>
+    </div>
+
+    <div class="Sign-In-Page-Form">
+        <div class="Sign-In-Page-Form-Titel">
+            管理者用ログイン画面
+        </div>
+        <%= form_tag(user_sign_in_by_id_path, method: :post) do %>
+            <div class="form-group">
+                <%= label_tag :email, "メールアドレス" %>
+                <%= email_field_tag :email, nil, autofocus: true, placeholder: 'メールアドレス', required: true, autocomplete: 'email', class: 'form-control' %>
+            </div>
+            <div class="form-group">
+                <%= label_tag :password, "パスワード" %>
+                <%= password_field_tag :password, nil, placeholder: 'パスワード', required: true, autocomplete: 'current-password', class: 'form-control' %>
+            </div>
+            <div class="form-group">
+                <%= submit_tag "ログイン", class: 'Submit-btn' %>
+            </div>
+        <% end %>
+
+    </div>
+
+</div>

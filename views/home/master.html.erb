@@ -1,0 +1,266 @@
+<div class="Page-Area">
+  <%= link_to(root_path) do %>
+    <div class="Back-Link-Area">
+      <div class="Back-Link-Icon">
+        <span class="material-icons-outlined">
+        door_back
+        </span>
+      </div>
+      <div class="Back-Link-Text">
+      ホームへ戻る
+      </div>
+    </div>
+  <% end %>
+  <div class="Page-Title">
+  マスタ管理
+  </div>
+  <div class="Page-Text">
+  サービスの管理することが可能です。
+  </div>
+  <div class="DashBoard">
+  <div class="DashBoard-Page-Bt-Area">
+  <% #ここから下を増やすと項目を増やせます %>
+  <%= link_to(profile_list_path) do %>
+    <div class="DashBoard-Page-Bt">
+      <div class="DashBoard-Page-Bt-Icon">
+        <span class="material-icons-outlined vw-4">
+          verified_user
+        </span>
+      </div>  
+      <div class="DashBoard-Page-Bt-Texts">
+        <div class="DashBoard-Page-Bt-Title">
+        権限管理
+        </div>
+        <div class="DashBoard-Page-Bt-Text">
+        権限の付与・剥奪ができます
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <% #上までを増やすと項目を増やせます %>
+  <%= link_to(role_generate_path) do %>
+    <div class="DashBoard-Page-Bt">
+      <div class="DashBoard-Page-Bt-Icon">
+        <span class="material-icons-outlined vw-4">
+          add_moderator
+        </span>
+      </div>  
+      <div class="DashBoard-Page-Bt-Texts">
+        <div class="DashBoard-Page-Bt-Title">
+        権限グループ作成
+        </div>
+        <div class="DashBoard-Page-Bt-Text">
+        権限グループの作成できます
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to(role_list_path) do %>
+    <div class="DashBoard-Page-Bt">
+      <div class="DashBoard-Page-Bt-Icon">
+        <span class="material-icons-outlined vw-4">
+          policy
+        </span>
+      </div>  
+      <div class="DashBoard-Page-Bt-Texts">
+        <div class="DashBoard-Page-Bt-Title">
+        権限グループ一覧
+        </div>
+        <div class="DashBoard-Page-Bt-Text">
+        権限グループを一覧で確認できます
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to(department_generate_path) do %>
+    <div class="DashBoard-Page-Bt">
+      <div class="DashBoard-Page-Bt-Icon">
+        <span class="material-icons-outlined vw-4">
+          library_add
+        </span>
+      </div>  
+      <div class="DashBoard-Page-Bt-Texts">
+        <div class="DashBoard-Page-Bt-Title">
+        所属プリセット作成
+        </div>
+        <div class="DashBoard-Page-Bt-Text">
+        部署・役職のプリセットを作成できます
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to(department_list_path) do %>
+    <div class="DashBoard-Page-Bt">
+      <div class="DashBoard-Page-Bt-Icon">
+        <span class="material-icons-outlined vw-4">
+          collections_bookmark
+        </span>
+      </div>  
+      <div class="DashBoard-Page-Bt-Texts">
+        <div class="DashBoard-Page-Bt-Title">
+        所属プリセット一覧
+        </div>
+        <div class="DashBoard-Page-Bt-Text">
+        所属プリセットを一覧で確認できます
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to(college_generate_path) do %>
+    <div class="DashBoard-Page-Bt">
+      <div class="DashBoard-Page-Bt-Icon">
+        <span class="material-icons-outlined vw-4">
+          note_add
+        </span>
+      </div>  
+      <div class="DashBoard-Page-Bt-Texts">
+        <div class="DashBoard-Page-Bt-Title">
+        カレッジの作成
+        </div>
+        <div class="DashBoard-Page-Bt-Text">
+        カレッジの作成できます
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to(course_generate_path) do %>
+    <div class="DashBoard-Page-Bt">
+      <div class="DashBoard-Page-Bt-Icon">
+        <span class="material-icons-outlined vw-4">
+          post_add
+        </span>
+      </div>  
+      <div class="DashBoard-Page-Bt-Texts">
+        <div class="DashBoard-Page-Bt-Title">
+        学科の作成
+        </div>
+        <div class="DashBoard-Page-Bt-Text">
+        学科の作成できます
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to(college_list_path) do %>
+    <div class="DashBoard-Page-Bt">
+      <div class="DashBoard-Page-Bt-Icon">
+        <span class="material-icons-outlined vw-4">
+          school
+        </span>
+      </div>  
+      <div class="DashBoard-Page-Bt-Texts">
+        <div class="DashBoard-Page-Bt-Title">
+        カレッジ一覧
+        </div>
+        <div class="DashBoard-Page-Bt-Text">
+        カレッジを一覧で確認できます
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to(course_list_path) do %>
+    <div class="DashBoard-Page-Bt">
+      <div class="DashBoard-Page-Bt-Icon">
+        <span class="material-icons-outlined vw-4">
+          real_estate_agent
+        </span>
+      </div>  
+      <div class="DashBoard-Page-Bt-Texts">
+        <div class="DashBoard-Page-Bt-Title">
+        学科一覧
+        </div>
+        <div class="DashBoard-Page-Bt-Text">
+        学科を一覧で確認できます
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to(attendance_auto_path) do %>
+    <div class="DashBoard-Page-Bt">
+      <div class="DashBoard-Page-Bt-Icon">
+        <span class="material-icons-outlined vw-4">
+          punch_clock
+        </span>
+      </div>  
+      <div class="DashBoard-Page-Bt-Texts">
+        <div class="DashBoard-Page-Bt-Title">
+        活動時間の記録
+        </div>
+        <div class="DashBoard-Page-Bt-Text">
+        活動時間を記録できます
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to(master_logs_path) do %>
+    <div class="DashBoard-Page-Bt">
+      <div class="DashBoard-Page-Bt-Icon">
+        <span class="material-icons-outlined vw-4">
+          table_rows
+        </span>
+      </div>  
+      <div class="DashBoard-Page-Bt-Texts">
+        <div class="DashBoard-Page-Bt-Title">
+        アプリケーション実行ログ
+        </div>
+        <div class="DashBoard-Page-Bt-Text">
+        アプリケーション実行ログを確認できます
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to(master_resourceMonitor_path) do %>
+    <div class="DashBoard-Page-Bt">
+      <div class="DashBoard-Page-Bt-Icon">
+        <span class="material-icons-outlined vw-4">
+          network_check
+        </span>
+      </div>  
+      <div class="DashBoard-Page-Bt-Texts">
+        <div class="DashBoard-Page-Bt-Title">
+        サーバリソースモニター
+        </div>
+        <div class="DashBoard-Page-Bt-Text">
+        サーバリソースモニターを確認できます
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to(master_accounts_path) do %>
+    <div class="DashBoard-Page-Bt">
+      <div class="DashBoard-Page-Bt-Icon">
+        <span class="material-icons-outlined vw-4">
+          assignment_ind
+        </span>
+      </div>  
+      <div class="DashBoard-Page-Bt-Texts">
+        <div class="DashBoard-Page-Bt-Title">
+        アカウントリスト
+        </div>
+        <div class="DashBoard-Page-Bt-Text">
+        アカウントを一覧で確認することができます
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to(new_user_signup_path) do %>
+    <div class="DashBoard-Page-Bt">
+      <div class="DashBoard-Page-Bt-Icon">
+        <span class="material-icons-outlined vw-4">
+          <span class="material-symbols-outlined">
+            medical_information
+          </span>
+        </span>
+      </div>  
+      <div class="DashBoard-Page-Bt-Texts">
+        <div class="DashBoard-Page-Bt-Title">
+        アカウント作成
+        </div>
+        <div class="DashBoard-Page-Bt-Text">
+        会員以外のアカウントを作成できます
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+  </div>
+</div>

@@ -1,0 +1,818 @@
+<div class="Page-Area">
+    <%= link_to(request_list_path) do %>
+        <div class="Back-Link-Area">
+        <div class="Back-Link-Icon">
+            <span class="material-icons-outlined">
+            undo
+            </span>
+        </div>
+        <div class="Back-Link-Text">
+        一覧へ戻る
+        </div>
+        </div>
+    <% end %>
+    <div class="Page-Title">
+    申請No：<%= format("%05d", @reqValue.id) %>  <%= @reqUser.username %>さんの<%= @reqValue.title %>
+    </div>
+    <div class="Page-Text">
+    申請の詳細
+    </div>
+    <% case @reqValue.kind %>
+        <% when "hr_UserUpdate" %>
+        <div class="DashBoard">
+            <div class="Dashboard-DoubleGroup">
+                <div class="Dashboard-DoubleGroupFrame slim">
+                    <div class="Dashboard-MoreSubTitle Frame-solid">
+                        申請前
+                    </div>
+                    <div class="DashBoard">
+                        <div class="Dashboard-MoreSubTitle">
+                            基本情報
+                        </div>
+                        <div class="Column-Title">
+                        ID
+                        </div>
+                        <div class="Column-Text">
+                        <%= format("%06d", @targetUserOld.user_id).presence || '---'%>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        氏名
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserOld.username.presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        氏名 (フリガナ)
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserOld.ruby.presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        ニックネーム
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserOld.nickname.presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        生年月日
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserOld.dob.presence.strftime('%Y/%m/%d') || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        性別
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserOld.sex.presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        メールアドレス
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserOld.first_name.presence || '---' %>.<%= @targetUserOld.last_name.presence || '---' %>@act-neec.org
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        電話番号
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserOld.phone.presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                    </div>
+                    <div class="DashBoard">
+                        <div class="Dashboard-MoreSubTitle">
+                        在学情報
+                        </div>
+                        <div class="Column-Title">
+                        学籍番号
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserOld.student_num.presence || '---'%>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        カレッジ
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserOld.course.college.name.presence || '---'%>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        学科
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserOld.course.name.presence || '---'%>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        学科記号
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserOld.course.symbol.presence || '---'%>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        クラス担任氏名（敬称略）
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserOld.teacher_name.presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        通学状況
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserOld.commute.presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                    </div>
+                    <div class="DashBoard">
+                        <div class="Dashboard-MoreSubTitle">
+                        所属情報
+                        </div>
+                        <div class="Column-Title">
+                        所属組織
+                        </div>
+                        <div class="Column-Text">
+                        学生委員会Act
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        所属部署
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserOld.department.department.presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        役職
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserOld.department.position.presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        所属状況
+                        </div>
+                        <div class="Column-Text">
+                        所属中
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        入会日時
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserOld.created_at.strftime('%Y/%m/%d %H:%M:%S').presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        退会日時
+                        </div>
+                        <div class="Column-Text">
+                        <% if @targetUserOld.leaved_at.blank?%>
+                        ---
+                        <%else%>
+                        <%= @targetUserOld.leaved_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                        <% end %>
+                        </div>
+                        <div class="Column-Line"></div>
+                    </div>
+                    <div class="DashBoard">
+                        <div class="Dashboard-MoreSubTitle">
+                        保護者情報
+                        </div>
+                        <div class="Column-Title">
+                        氏名
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserOld.parent_name.presence || '---'%>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        電話番号
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserOld.parent_phone.presence || '---'%>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        住所
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserOld.parent_address.presence || '---'%>
+                        </div>
+                        <div class="Column-Line"></div>
+                    </div>
+                </div>
+                <div class="Dashboard-DoubleGroupFrame slim">
+                    <div class="Dashboard-MoreSubTitle Frame-dashed">
+                        申請後
+                    </div>
+                    <div class="DashBoard">
+                        <div class="Dashboard-MoreSubTitle">
+                            基本情報
+                        </div>
+                        <div class="Column-Title">
+                        ID
+                        </div>
+                        <div class="Column-Text">
+                        <%= format("%06d", @targetUserNew.user_id).presence || '---'%>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        氏名
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserNew.username.presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        氏名 (フリガナ)
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserNew.ruby.presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        ニックネーム
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserNew.nickname.presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        生年月日
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserNew.dob.presence.strftime('%Y/%m/%d') || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        性別
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserNew.sex.presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        メールアドレス
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserNew.first_name.presence || '---' %>.<%= @targetUserNew.last_name.presence || '---' %>@act-neec.org
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        電話番号
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserNew.phone.presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                    </div>
+                    <div class="DashBoard">
+                        <div class="Dashboard-MoreSubTitle">
+                        在学情報
+                        </div>
+                        <div class="Column-Title">
+                        学籍番号
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserNew.student_num.presence || '---'%>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        カレッジ
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserNew.course.college.name.presence || '---'%>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        学科
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserNew.course.name.presence || '---'%>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        学科記号
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserNew.course.symbol.presence || '---'%>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        クラス担任氏名（敬称略）
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserNew.teacher_name.presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        通学状況
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserNew.commute.presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                    </div>
+                    <div class="DashBoard">
+                        <div class="Dashboard-MoreSubTitle">
+                        所属情報
+                        </div>
+                        <div class="Column-Title">
+                        所属組織
+                        </div>
+                        <div class="Column-Text">
+                        学生委員会Act
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        所属部署
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserNew.department.department.presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        役職
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserNew.department.position.presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        所属状況
+                        </div>
+                        <div class="Column-Text">
+                        所属中
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        入会日時
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserNew.created_at.strftime('%Y/%m/%d %H:%M:%S').presence || '---' %>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        退会日時
+                        </div>
+                        <div class="Column-Text">
+                        <% if @targetUserNew.leaved_at.blank?%>
+                        ---
+                        <%else%>
+                        <%= @targetUserNew.leaved_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                        <% end %>
+                        </div>
+                        <div class="Column-Line"></div>
+                    </div>
+                    <div class="DashBoard">
+                        <div class="Dashboard-MoreSubTitle">
+                        保護者情報
+                        </div>
+                        <div class="Column-Title">
+                        氏名
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserNew.parent_name.presence || '---'%>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        電話番号
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserNew.parent_phone.presence || '---'%>
+                        </div>
+                        <div class="Column-Line"></div>
+                        <div class="Column-Title">
+                        住所
+                        </div>
+                        <div class="Column-Text">
+                        <%= @targetUserNew.parent_address.presence || '---'%>
+                        </div>
+                        <div class="Column-Line"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="DashBoard">
+                <div class="Dashboard-DoubleGroup">
+                    <div class="Dashboard-DoubleGroupFrame slim">
+                        <div class="Column-Title">
+                        申請日時
+                        </div>
+                        <div class="Column-Text">
+                        <%= @reqValue.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                        </div>
+                        <div class="Column-Line"></div>
+                    </div>
+                    <div class="Dashboard-DoubleGroupFrame slim">
+                        <div class="Column-Title">
+                        最終更新日時
+                        </div>
+                        <div class="Column-Text">
+                        <%= @reqValue.updated_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                        </div>
+                        <div class="Column-Line"></div>
+                    </div>
+                </div>
+                <div class="Dashboard-DoubleGroup">
+                    <div class="Dashboard-DoubleGroupFrame slim">
+                        <div class="Column-Title">
+                        処理者
+                        </div>
+                        <div class="Column-Text">
+                        <%= @reqValue.approver %>
+                        </div>
+                        <div class="Column-Line"></div>
+                    </div>
+                <div class="Dashboard-DoubleGroupFrame slim"></div>
+            </div>
+            </div>
+            <% if @reqValue.status == "info" && current_user.role_id.slice(2) >= "6" %>
+                <div class="DashBoard">
+                    <div class="Dashboard-DoubleGroup">
+                        <div class="Dashboard-DoubleGroupFrame slim">
+                        <%= link_to("否認", "/profile/reqDeny/#{@reqValue.id}", class: "btn btn-lg btn-danger btn-block") %>
+                        <br>
+                        </div>
+                        <div class="Dashboard-DoubleGroupFrame slim">
+                        <%= link_to("承認", "/profile/reqDo/#{@reqValue.id}", class: "btn btn-lg btn-success btn-block") %>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+            </div>
+        <% when "hr_ModifyUpdate" %>
+            <div class="DashBoard">
+                <div class="Dashboard-DoubleGroup">
+                    <div class="Dashboard-DoubleGroupFrame slim">
+                        <div class="Dashboard-MoreSubTitle Frame-solid">
+                            申請前
+                        </div>
+                        <div class="DashBoard">
+                            <div class="Dashboard-MoreSubTitle">
+                            打刻情報
+                            </div>
+                            <div class="Column-Title">
+                            打刻対象者
+                            </div>
+                            <div class="Column-Text">
+                            <%= @reqUser.username.presence || '---' %>
+                            </div>
+                            <div class="Column-Line"></div>
+                            <div class="Column-Title">
+                            対象日
+                            </div>
+                            <div class="Column-Text">
+                            <% if @userAct.nil? %>
+                            ---
+                            <% else %>
+                            <%= @userAct.date %>
+                            <% end %>
+                            </div>
+                            <div class="Column-Line"></div>
+                            <div class="Column-Title">
+                            入室時刻
+                            </div>
+                            <div class="Column-Text">
+                            <% if @userAct.nil? %>
+                            ---
+                            <% else %>
+                            <%= @userAct.in.strftime('%H:%M') %>
+                            <% end %>
+                            </div>
+                            <div class="Column-Line"></div>
+                            <div class="Column-Title">
+                            退出時刻
+                            </div>
+                            <div class="Column-Text">
+                            <% if @userAct.nil? %>
+                            ---
+                            <% else %>
+                            <% if @userAct.out.nil? %>
+                            ---
+                            <% else %>
+                            <%= @userAct.out.strftime('%H:%M') %>
+                            <% end %>
+                            <% end %>
+                            </div>
+                            <div class="Column-Line"></div>
+                            <div class="Column-Title">
+                            最終更新者
+                            </div>
+                            <div class="Column-Text">
+                            <% if @userAct.nil? %>
+                            ---
+                            <% else %>
+                            <%= @userAct.updater %>
+                            <% end %>
+                            </div>
+                            <div class="Column-Line"></div>
+                        </div>
+                    </div>
+                    <div class="Dashboard-DoubleGroupFrame slim">
+                        <div class="Dashboard-MoreSubTitle Frame-dashed">
+                            申請後
+                        </div>
+                        <div class="DashBoard">
+                            <div class="Dashboard-MoreSubTitle">
+                            打刻情報
+                            </div>
+                            <div class="Column-Title">
+                            打刻対象者
+                            </div>
+                            <div class="Column-Text">
+                            <%= @reqUser.username.presence || '---' %>
+                            </div>
+                            <div class="Column-Line"></div>
+                            <div class="Column-Title">
+                            対象日
+                            </div>
+                            <div class="Column-Text">
+                            <%= @reqValue.value.slice(0,10) %>
+                            </div>
+                            <div class="Column-Line"></div>
+                            <div class="Column-Title">
+                            入室時刻
+                            </div>
+                            <div class="Column-Text">
+                            <% if @userAct.nil? %>
+                            <%= @reqValue.value.slice(11,5)%>
+                            <% else %>
+                            <%= @userAct.in.strftime('%H:%M') %>
+                            <% end %>
+                            </div>
+                            <div class="Column-Line"></div>
+                            <div class="Column-Title">
+                            退出時刻
+                            </div>
+                            <div class="Column-Text">
+                            <% if @userAct.nil? %>
+                            ---
+                            <% else %>
+                            <%= @reqValue.value.slice(11,5) %>
+                            <% end %>
+                            </div>
+                            <div class="Column-Line"></div>
+                            <div class="Column-Title">
+                            最終更新者
+                            </div>
+                            <div class="Column-Text">
+                            システム（打刻修正申請）
+                            </div>
+                            <div class="Column-Line"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="DashBoard">
+                <div class="Dashboard-DoubleGroup">
+                    <div class="Dashboard-DoubleGroupFrame slim">
+                        <div class="Column-Title">
+                        申請日時
+                        </div>
+                        <div class="Column-Text">
+                        <%= @reqValue.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                        </div>
+                        <div class="Column-Line"></div>
+                    </div>
+                    <div class="Dashboard-DoubleGroupFrame slim">
+                        <div class="Column-Title">
+                        最終更新日時
+                        </div>
+                        <div class="Column-Text">
+                        <%= @reqValue.updated_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                        </div>
+                        <div class="Column-Line"></div>
+                    </div>
+                </div>
+                    <div class="Dashboard-DoubleGroup">
+                        <div class="Dashboard-DoubleGroupFrame slim">
+                            <div class="Column-Title">
+                            処理者
+                            </div>
+                            <div class="Column-Text">
+                            <%= @reqValue.approver %>
+                            </div>
+                            <div class="Column-Line"></div>
+                        </div>
+                    <div class="Dashboard-DoubleGroupFrame slim"></div>
+                </div>
+            </div>
+            <% if @reqValue.status == "info" && current_user.role_id.slice(2) >= "5" %>
+                <div class="DashBoard">
+                    <div class="Dashboard-DoubleGroup">
+                        <div class="Dashboard-DoubleGroupFrame slim">
+                        <%= link_to("否認", "/attendance/reqDeny/#{@reqValue.id}", class: "btn btn-lg btn-danger btn-block") %>
+                        <br>
+                        </div>
+                        <div class="Dashboard-DoubleGroupFrame slim">
+                        <%= link_to("承認", "/attendance/reqDo/#{@reqValue.id}", class: "btn btn-lg btn-success btn-block") %>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        <% when "event_creation" %>
+            <div class="DashBoard">
+                <div class="Dashboard-DoubleGroup">
+                    <div class="Dashboard-DoubleGroupFrame slim">
+                        <div class="Column-Title">
+                        申請日時
+                        </div>
+                        <div class="Column-Text">
+                        <%= @reqValue.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                        </div>
+                        <div class="Column-Line"></div>
+                    </div>
+                    <div class="Dashboard-DoubleGroupFrame slim">
+                        <div class="Column-Title">
+                        最終更新日時
+                        </div>
+                        <div class="Column-Text">
+                        <%= @reqValue.updated_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                        </div>
+                        <div class="Column-Line"></div>
+                    </div>
+                </div>
+                    <div class="Dashboard-DoubleGroup">
+                        <div class="Dashboard-DoubleGroupFrame slim">
+                            <div class="Column-Title">
+                            処理者
+                            </div>
+                            <div class="Column-Text">
+                            <%= @reqValue.approver %>
+                            </div>
+                            <div class="Column-Line"></div>
+                        </div>
+                    <div class="Dashboard-DoubleGroupFrame slim"></div>
+                </div>
+            </div>
+            <% if @reqValue.status == "info" && current_user.role_id.slice(1) >= "5" %>
+            <div class="DashBoard">
+                <div class="Dashboard-DoubleGroup">
+                    <div class="Dashboard-DoubleGroupFrame slim">
+                    <%= link_to("否認", "/events/deny/#{@reqValue.id}", class: "btn btn-lg btn-danger btn-block") %>
+                    <br>
+                    </div>
+                    <div class="Dashboard-DoubleGroupFrame slim">
+                    <%= link_to("承認", "/events/approve/#{@reqValue.id}", class: "btn btn-lg btn-success btn-block") %>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+        <% when "hr_ConectID" %>
+            <div class="DashBoard">
+                <div class="Dashboard-DoubleGroup">
+                    <div class="Dashboard-DoubleGroupFrame slim">
+                        <div class="Dashboard-MoreSubTitle Frame-solid">
+                            申請前
+                        </div>
+                        <div class="DashBoard">
+                            <div class="Dashboard-MoreSubTitle">
+                                基本情報
+                            </div>
+                            <div class="Column-Title">
+                            ID
+                            </div>
+                            <div class="Column-Text">
+                            <%= format("%06d", @targetUser.user_id).presence || '---'%>
+                            </div>
+                            <div class="Column-Line"></div>
+                            <div class="Column-Title">
+                            氏名
+                            </div>
+                            <div class="Column-Text">
+                            <%= @targetUser.username.presence || '---' %>
+                            </div>
+                            <div class="Column-Line"></div>
+                            <div class="Column-Title">
+                            氏名 (フリガナ)
+                            </div>
+                            <div class="Column-Text">
+                            <%= @targetUser.ruby.presence || '---' %>
+                            </div>
+                            <div class="Column-Line"></div>
+                            <div class="Column-Title">
+                            ニックネーム
+                            </div>
+                            <div class="Column-Text">
+                            <%= @targetUser.nickname.presence || '---' %>
+                            </div>
+                            <div class="Column-Line"></div>
+                        </div>
+                        <div class="DashBoard">
+                            <div class="Column-Title">
+                            連携ID（Googleアカウント）
+                            </div>
+                            <div class="Column-Text">
+                            <%= @targetUserOld.email || '---'%>
+                            </div>
+                            <div class="Column-Line"></div>
+                        </div>
+                    </div>
+                    <div class="Dashboard-DoubleGroupFrame slim">
+                        <div class="Dashboard-MoreSubTitle Frame-dashed">
+                            申請後
+                        </div>
+                        <div class="DashBoard">
+                            <div class="Dashboard-MoreSubTitle">
+                                基本情報
+                            </div>
+                            <div class="Column-Title">
+                            ID
+                            </div>
+                            <div class="Column-Text">
+                            <%= format("%06d", @targetUser.user_id).presence || '---'%>
+                            </div>
+                            <div class="Column-Line"></div>
+                            <div class="Column-Title">
+                            氏名
+                            </div>
+                            <div class="Column-Text">
+                            <%= @targetUser.username.presence || '---' %>
+                            </div>
+                            <div class="Column-Line"></div>
+                            <div class="Column-Title">
+                            氏名 (フリガナ)
+                            </div>
+                            <div class="Column-Text">
+                            <%= @targetUser.ruby.presence || '---' %>
+                            </div>
+                            <div class="Column-Line"></div>
+                            <div class="Column-Title">
+                            ニックネーム
+                            </div>
+                            <div class="Column-Text">
+                            <%= @targetUser.nickname.presence || '---' %>
+                            </div>
+                            <div class="Column-Line"></div>
+                        </div>
+                        <div class="DashBoard">
+                            <div class="Column-Title">
+                            連携ID（Googleアカウント）
+                            </div>
+                            <div class="Column-Text">
+                            <%= @reqValue.value || '---'%>
+                            </div>
+                            <div class="Column-Line"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="DashBoard">
+                    <div class="Dashboard-DoubleGroup">
+                        <div class="Dashboard-DoubleGroupFrame slim">
+                            <div class="Column-Title">
+                            申請日時
+                            </div>
+                            <div class="Column-Text">
+                            <%= @reqValue.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                            </div>
+                            <div class="Column-Line"></div>
+                        </div>
+                        <div class="Dashboard-DoubleGroupFrame slim">
+                            <div class="Column-Title">
+                            最終更新日時
+                            </div>
+                            <div class="Column-Text">
+                            <%= @reqValue.updated_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                            </div>
+                            <div class="Column-Line"></div>
+                        </div>
+                    </div>
+                    <div class="Dashboard-DoubleGroup">
+                        <div class="Dashboard-DoubleGroupFrame slim">
+                            <div class="Column-Title">
+                                処理者
+                            </div>
+                            <div class="Column-Text">
+                                <%= @reqValue.approver %>
+                            </div>
+                            <div class="Column-Line"></div>
+                        </div>
+                        <div class="Dashboard-DoubleGroupFrame slim"></div>
+                    </div>
+                </div>
+                <% if @reqValue.status == "info" && current_user.role_id.slice(5) >= "3" %>
+                    <div class="DashBoard">
+                        <div class="Dashboard-DoubleGroup">
+                            <div class="Dashboard-DoubleGroupFrame slim">
+                                <%= link_to("否認", "/profile/reqConectIDDeny/#{@reqValue.id}", class: "btn btn-lg btn-danger btn-block") %>
+                                <br>
+                            </div>
+                            <div class="Dashboard-DoubleGroupFrame slim">
+                                <%= link_to("承認", "/profile/reqConectIDDo/#{@reqValue.id}", class: "btn btn-lg btn-success btn-block") %>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+    <% end %>
+</div>

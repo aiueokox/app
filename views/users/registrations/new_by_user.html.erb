@@ -1,0 +1,87 @@
+<div class="Page-Area">
+  <div class="Page-Title">
+    アカウントを作成（管理用・ゲスト）
+  </div>
+  <div class="Page-Text">
+    サークル活動支援サービス「ACTION」管理用・ゲスト用のユーザーアカウントを作成いたします。<br>
+    以下、フォームをすべてご入力の上お進みください。
+  </div>
+  <div class="Dashboard-DoubleGroup-w">
+    <div class="Dashboard-Contents">
+      <%= form_for(@user, url: create_user_by_admin_path, method: :post) do |f| %> <!-- URLをcreate_user_by_admin_pathに変更 -->
+        <%= bootstrap_devise_error_messages! %>
+
+        <div class="form-group">
+          <%= f.label "メールアドレス" %>
+          <%= f.email_field :email, placeholder: 'example@example.jp', required: true, autocomplete: 'email', class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "パスワード" %>
+          <%= f.password_field :password, placeholder: 'パスワードを入力してください', required: true, autocomplete: 'new-password', class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "パスワード（確認）" %>
+          <%= f.password_field :password_confirmation, placeholder: 'パスワードを再度入力してください', required: true, autocomplete: 'new-password', class: 'form-control' %>
+        </div>
+
+        <%= f.fields_for :profile do |profile_f| %>
+          <div class="form-group">
+            <%= profile_f.label "氏名" %>
+            <%= profile_f.text_field :username, placeholder: '例）蒲田 太郎', required: true, autocomplete: 'name', class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= profile_f.label "フリガナ" %>
+            <%= profile_f.text_field :ruby, placeholder: '例）カマタ タロウ', required: true, autocomplete: 'ruby', class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= profile_f.label "ローマ字（姓）" %>
+            <%= profile_f.text_field :last_name, placeholder: '例）kamata', required: true, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= profile_f.label "ローマ字（名）" %>
+            <%= profile_f.text_field :first_name, placeholder: '例）taro', required: true, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= profile_f.label "所属プリセット" %>
+            <%= profile_f.collection_select :department_id, Department.all, :id, :view_department_and_position, {:prompt => '所属プリセットを選択してください'}, required: true, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= profile_f.label "性別" %>
+            <%= profile_f.select :sex, options_for_select([['男性', '男性'],['女性', '女性'], ['その他', 'その他']]), {:prompt => '性別を選択してください'}, required: true, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= profile_f.label "生年月日" %>
+            <%= profile_f.date_field :dob, required: true, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= profile_f.label "電話番号" %>
+            <%= profile_f.text_field :phone, placeholder: '例）08012345678', required: true, autocomplete: 'phone', class: 'form-control' %>
+          </div>
+
+          <%= profile_f.hidden_field :student_num, :value => "z000z0000" %>
+          <%= profile_f.hidden_field :course_id, :value => 1 %>
+          <%= profile_f.hidden_field :teacher_name, :value => "---" %>
+          <%= profile_f.hidden_field :commute, :value => "その他" %>
+          <%= profile_f.hidden_field :parent_name, :value => "---" %>
+          <%= profile_f.hidden_field :parent_phone, :value => "---" %>
+          <%= profile_f.hidden_field :parent_address, :value => "---" %>
+        <% end %>
+
+        <div class="form-group">
+          <%= f.submit "アカウント作成", class: 'Submit-btn' %>
+        </div>
+      <% end %>
+    </div>
+    <div class="Dashboard-Contents">
+    </div>
+  </div>
+</div>

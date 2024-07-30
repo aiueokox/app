@@ -1,0 +1,48 @@
+<meta http-equiv="Refresh" content="1.5; url=<%= request.referer %>">
+<%= audio_tag"/audio/success.mp3", autoplay: true, controls: false %>
+<script>
+    function twoDigit(num) {
+        let ret;
+        if( num < 10 ) 
+        ret = "0" + num; 
+        else 
+        ret = num; 
+        return ret;
+    }
+    function showClock() {
+        let nowTime = new Date();
+        let nowHour = twoDigit( nowTime.getHours() );
+        let nowMin  = twoDigit( nowTime.getMinutes() );
+        let nowSec  = twoDigit( nowTime.getSeconds() );
+        let msg =  nowHour + ":" + nowMin + ":" + nowSec;
+        document.getElementById("realtime").innerHTML = msg;
+    }
+    setInterval('showClock()',1000);
+</script>
+
+<body onload="document.getElementById('form-control').focus(); LoadProc();" style="background-color:#2d2d2d;">
+	<div class="date">
+		<script language="JavaScript">
+		mydate=new Date();
+		Ye=mydate.getFullYear()+"年";
+		Mo=mydate.getMonth()+1+"月";
+		Da=mydate.getDate()+"日";
+		Day=mydate.getDay();
+		Day2=new Array(7);
+		Day2[0]="日";Day2[1]="月";Day2[2]="火";
+		Day2[3]="水";Day2[4]="木";Day2[5]="金";
+		Day2[6]="土";
+		document.write(Ye+Mo+Da+"（"+Day2[Day]+"）");
+		</script>
+	</div>
+	<div class="time">
+		(·:ﾟдﾟ:·)ﾊｧﾊｧ
+	</div>
+	<div class="cate">
+		Process：
+	</div>
+	<div class="cate-text-S">
+		SUCCESS
+	</div>
+	
+</body>
