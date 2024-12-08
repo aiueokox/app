@@ -34,33 +34,33 @@
             <div class="form-title">
                 イベントタイトル
             </div>
-            <%= f.text_field :event_title, class: 'form-control' %>
+            <%= f.text_field :event_title, class: 'form-control', required: 'true' %>
         </div>
         <div class="form-group">
             <div class="form-title">
                 イベント概要
             </div>
-            <%= f.text_area :event_description, class: 'form-control' %>
+            <%= f.text_area :event_description, class: 'form-control', required: 'true' %>
         </div>
 
         <div class="form-group">
             <div class="form-title">
                 イベント開始日時
             </div>
-            <%= f.datetime_field :event_start_date_time, class: 'form-control' %>
+            <%= f.datetime_field :event_start_date_time, class: 'form-control', required: 'true' %>
         </div>
 
         <div class="form-group">
             <div class="form-title">
                 イベント終了日時
             </div>
-            <%= f.datetime_field :event_end_date_time, class: 'form-control' %>
+            <%= f.datetime_field :event_end_date_time, class: 'form-control', required: 'true' %>
         </div>
         <div class="form-group">
             <div class="form-title">
                 イベント告知日
             </div>
-            <%= f.date_field :event_announcement_date, class: 'form-control' %>
+            <%= f.date_field :event_announcement_date, class: 'form-control', required: 'true' %>
         </div>
 
         <div class="form-group">  
